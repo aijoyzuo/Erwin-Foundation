@@ -399,6 +399,11 @@ P{
 	.header li a, .header li span{
 		padding: 20px;
 	}
+	.othersite{
+		width:86px;
+		padding:2px;	
+		}
+
 	.ad, .about, .life, .square, .collection, .anecdote, .footer{
 		max-width:95%;
 	}
@@ -482,6 +487,9 @@ P{
 		gap:4px;
 		padding:8px 12px 8px 12px;
 		text-align: center;
+		}
+	.othersite{
+		width:90px;
 		}
 	
 	.ad, .about, .life, .square, .collection, .anecdote, .footer{
