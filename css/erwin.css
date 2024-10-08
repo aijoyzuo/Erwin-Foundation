@@ -254,7 +254,7 @@ P{
 	padding-left: 25px;
 }
 .square img{
-	max-width: 350px;
+	width: 350px;
 	padding:4px;
 	box-shadow: 0 4px 5px rgba(78, 71, 30, 0.5);
 }
@@ -422,8 +422,8 @@ P{
 		padding: 10px;
 	}
 	.square img{
-		max-width: 250px;
-		}
+		width: 250px;
+	}
 }  
 @media(max-width:768px){
 	.header-bg{
@@ -459,8 +459,7 @@ P{
 		padding: 10px;
 	}
 	.square img{
-		max-width: 250px;
-	
+		width: 250px;	
 	}
 }
 @media(max-width:431px){
@@ -536,7 +535,7 @@ P{
 		gap:15px;
 	}
 	.square img{
-		max-width: 250px;
+		width: 250px;
 	
 	}
 	.collection .swiper-slide {
@@ -628,9 +627,7 @@ P{
 		gap:15px;
 	}
 	.square img{
-		max-width: 250px;
-	
-
+		width: 250px;
 	}
 	.collection .swiper-slide {
 		flex-direction: column;
