@@ -388,6 +388,41 @@ P{
 .scroll-element.scrolled {
 	transform: translateY(-10px);
   }
+@media(max-width:829px){
+	.header-bg{
+		max-width:100%;
+	}
+	.header{
+		max-width: 95%;
+		height: 100%;
+	}
+	.header li a, .header li span{
+		padding: 20px;
+	}
+	.ad, .about, .life, .square, .collection, .anecdote, .footer{
+		max-width:95%;
+	}
+	.swiper1{
+		max-width: 100%;
+	}
+	.ad .swiper-slide img{
+		max-width:100%;
+	}
+	.about-a img{
+		width:200px;
+		height:100%;
+	}
+	.life-e{
+		gap:4px;
+	}
+	.life-a, .life-b{
+		max-width:350px;
+	}
+	.header li a, .header li span{
+		padding: 10px;
+	}
+}
+
 
 @media(max-width:768px){
 	.header-bg{
