@@ -423,6 +423,99 @@ P{
 		padding: 10px;
 	}
 }
+@media(max-width:431px){
+	.header-bg{
+		max-width:100%;
+	}
+	.header{
+		max-width: 95%;
+		height: 100%;
+	}
+	.menu>li>a{
+		display: none;
+	}
+	.header li span{
+		padding: 20px;
+	}
+	.logo{
+		flex-direction: column;
+		font-size: 16px;
+		gap:4px;
+		padding:8px 12px 8px 12px;
+		text-align: center;
+		}
+	
+	.ad, .about, .life, .square, .collection, .anecdote, .footer{
+		max-width:95%;
+	}
+	.swiper1{
+		max-width: 100%;
+	}
+	.ad .swiper-slide img{
+		max-width:100%;
+	}
+	.about-a{
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	.about-a img{
+		width:200px;
+		height:100%;
+	}
+	.life{
+		height:100%;
+	}
+	.life-e{
+		flex-direction: column;
+		gap:0px;
+	}
+	.life-a, .life-b{
+		max-width: 95%;
+		margin-bottom: 0px;
+		margin-top: 20px;
+	}
+	.life-d{
+		display: none;
+	}
+	.life-c{
+		margin-top: 25px;
+		max-width: 95%;
+	}
+	.life-c h3{
+		font-size: 18px;
+	}
+	
+	.square-a{
+		padding-top: 10px;
+		flex-direction: column-reverse;
+		gap:15px;
+	}
+	.square-b{
+		padding-top: 20px;
+		flex-direction: column;
+		gap:15px;
+	}
+	.square img{
+		max-width: 250px;
+		height: 100%;
+
+	}
+	.collection .swiper-slide {
+		flex-direction: column;
+	}
+	.anecdote-a{
+		flex-direction: column;
+		padding-top: 20px;
+	}
+	.anecdote-a img{
+		width: 250px;
+	}
+	.footer p{
+		line-height: 100%;
+	}
+
+	
+}
 @media(max-width:360px){
 	.header-bg{
 		max-width:100%;
