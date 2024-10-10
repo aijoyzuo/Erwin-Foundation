@@ -291,12 +291,18 @@
 
         table {
             max-width: 600px;
-            margin: 12px 0px 12px 0px;
+            margin: 12px 0px 0px 0px;
             text-align: center;
             border: 2px solid #2f3944;
             font-family: Caption;
             font-size: 16px;
             border-collapse: collapse;
+        }
+
+        iframe {
+            border-width: 0px 2px 2px 2px;
+            border-style: solid;
+            border-color: #2f3944;
         }
 
         th {
@@ -382,6 +388,10 @@
                 max-width: 100%;
                 margin: 12px 2.5% 12px 2.5%;
             }
+            iframe{
+                max-width: 100%;
+                margin: 12px 2.5% 12px 2.5%;
+            }
 
             .footer {
                 width: 100%;
@@ -404,7 +414,10 @@
                 max-width: 100%;
                 margin: 12px 2.5% 12px 2.5%;
             }
-
+            iframe{
+                max-width: 100%;
+                margin: 12px 2.5% 12px 2.5%;
+            }
             .footer {
                 width: 100%;
             }
@@ -459,9 +472,8 @@
                     </thead>
                     <tbody></tbody>
                 </table>
-                <!--<iframe width="600" height="800"
-                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQo330p7f2VlmPfe27opCAkOsz1BJsgskbTFWych_UHJMMEJcX3ivSbzpRTXWDht9-Euf8BUv8Rs_rk/pubhtml?gid=554514946&amp;single=true&amp;widget=true&amp;headers=false"
-                    frameborder="0"></iframe>-->
+                <iframe width="600" height="800"
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQloyq0sMOCW9W9yvJNR8hR3Du9uXZKWMzEqe_gpVPGVyGMnT6aoEydF9IwVVqEUCx85g7dbSAbpHE3/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
             </div>
         </div>
         <div class="footer">
@@ -513,7 +525,7 @@
 
         fetch("https://script.google.com/macros/s/AKfycbxIV0ERUsHpTqW5qNeTg26FzLfF5AfgqwQOc24JIGXh4u3aTI8RIIAGZwV4vpg5W6aH/exec", {
             method: "POST",
-            body: JSON.stringify(data), 
+            body: JSON.stringify(data),
             mode: 'no-cors', // 加入這一行           
             headers: {
                 "Content-Type": "application/json"
