@@ -510,10 +510,11 @@
         };
 
         console.log("Submitting data:", data); // 輸出要提交的數據
-        
+
         fetch("https://script.google.com/macros/s/AKfycbxIV0ERUsHpTqW5qNeTg26FzLfF5AfgqwQOc24JIGXh4u3aTI8RIIAGZwV4vpg5W6aH/exec", {
             method: "POST",
-            body: JSON.stringify(data),            
+            body: JSON.stringify(data), 
+            mode: 'no-cors', // 加入這一行           
             headers: {
                 "Content-Type": "application/json"
             }
