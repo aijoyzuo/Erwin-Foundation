@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
-    
+
     <!-- CSS 格式修改 -->
     <style>
         /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -23,10 +23,87 @@
     License: none (public domain)
  */
 
-        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6,p, blockquote,pre, a, abbr, acronym, address, big,cite, code,  del, dfn, em, img,ins, kbd, q,        s,        samp,        small,        strike,
-        strong, sub, sup, tt, var,b, u, i, center, dl,dt, dd, ol, ul, li, fieldset, form, label, legend, table,      caption,        tbody,        tfoot,        thead,        tr,        th,
-        td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav,        output,        ruby,        section,        summary,        time,        mark,        audio,        video 
-        {
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td,
+        article,
+        aside,
+        canvas,
+        details,
+        embed,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        output,
+        ruby,
+        section,
+        summary,
+        time,
+        mark,
+        audio,
+        video {
             margin: 0;
             padding: 0;
             border: 0;
@@ -106,7 +183,7 @@
             margin-top: 8px;
             text-align: center;
             padding: 17px 0px 17px 0px;
-            background-image: url("../img/messageboard/bluesky2.jpg");
+            background-image: url("img/messageboard/bluesky2.jpg");
             line-height: 130%;
             letter-spacing: 4px;
         }
@@ -124,7 +201,7 @@
         .comment-bg,
         .result-bg {
             padding-bottom: 20px;
-            background-image: url("../img/paperboard4.jpg");
+            background-image: url("img/paperboard4.jpg");
             background-repeat: repeat;
 
         }
@@ -359,8 +436,7 @@
                         class="BG-Copy"></TEXTAREA>
                     <br>
                     <!-- 定義送出鍵的動作，使用JavaScript的function-->
-                    <INPUT TYPE="submit" id="submitButton" VALUE="送出" class="Base"
-                        onclick="processFormData(); addMsg()">
+                    <INPUT TYPE="submit" id="submitButton" VALUE="送出" class="Base">
                 </form>
             </div>
         </div>
@@ -424,27 +500,44 @@
     /*留言板*/
     // 放在document.ready外部，確保全局可訪問
     function submitData() {
-    var username = document.getElementById("username").value;
-    var feedback = document.getElementById("feedback").value;
+        event.preventDefault(); // 阻止表單默認提交行為
+        var username = document.getElementById("username").value;
+        var feedback = document.getElementById("feedback").value;
 
-    var data = {
-      username: username,
-      feedback: feedback
-    };
+        var data = {
+            username: username,
+            feedback: feedback
+        };
 
-    fetch("https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycby13W6i2va5LviUFy2Ds9lxrQt_-yh5P0CLAhz8HfjcOP6pA7ImHbgqANBoF1fDFpl-/exec/exec", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(response => response.text())
-    .then(data => alert(data))
-    .catch(error => console.error('Error:', error));
-  }
-  document.getElementById("submitButton").addEventListener("click", submitData);
+        fetch("https://script.google.com/macros/s/AKfycbxIV0ERUsHpTqW5qNeTg26FzLfF5AfgqwQOc24JIGXh4u3aTI8RIIAGZwV4vpg5W6aH/exec", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
 
+            .then(response => response.text())
+            .then(responseData => {
+                alert("謝謝 " + username + "獻出的心臟！"); // 顯示成功消息
+                console.log(responseData); // 顯示伺服器的響應
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("抱歉，判定為瑪雷人。請稍後再試。"); // 顯示錯誤消息
+            });
+    }
+    document.getElementById("submitButton").addEventListener("click", submitData);
+
+    function doPost(e) {
+        if (e && e.postData) {
+            var data = JSON.parse(e.postData.contents);
+            // 寫入 Google Sheets 的邏輯...
+            return ContentService.createTextOutput("Data received");
+        } else {
+            return ContentService.createTextOutput("No data received.");
+        }
+    }
 
 </script>
 
