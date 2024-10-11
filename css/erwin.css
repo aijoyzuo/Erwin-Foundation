@@ -155,7 +155,7 @@ P{
 	line-height: 170%;
 	padding-left: 25px;
 }
-.ad{
+.poster{
 	max-width: 1000px;
 	margin: 0 auto;
 }
@@ -165,12 +165,12 @@ P{
 	padding-top:40px;
 }
 
-.ad .swiper-slide {
+.poster .swiper-slide {
 	background-position: center;
 	background-size: cover;
 }
 
-.ad .swiper-slide img {
+.poster .swiper-slide img {
 	display: block;
 	width: 100%;
 	height:100%;
@@ -404,13 +404,13 @@ P{
 		padding:2px;	
 		}
 
-	.ad, .about, .life, .square, .collection, .anecdote, .footer{
+	.poster, .about, .life, .square, .collection, .anecdote, .footer{
 		max-width:95%;
 	}
 	.swiper1{
 		max-width: 100%;
 	}
-	.ad .swiper-slide img{
+	.poster .swiper-slide img{
 		max-width:100%;
 	}
 	.about-a img{
@@ -441,13 +441,13 @@ P{
 	.header li a, .header li span{
 		padding: 20px;
 	}
-	.ad, .about, .life, .square, .collection, .anecdote, .footer{
+	.poster, .about, .life, .square, .collection, .anecdote, .footer{
 		max-width:95%;
 	}
 	.swiper1{
 		max-width: 100%;
 	}
-	.ad .swiper-slide img{
+	.poster .swiper-slide img{
 		max-width:100%;
 	}
 	.about-a img{
@@ -492,13 +492,13 @@ P{
 		width:90px;
 		}
 	
-	.ad, .about, .life, .square, .collection, .anecdote, .footer{
+	.poster, .about, .life, .square, .collection, .anecdote, .footer{
 		max-width:95%;
 	}
 	.swiper1{
 		max-width: 100%;
 	}
-	.ad .swiper-slide img{
+	.poster .swiper-slide img{
 		max-width:100%;
 	}
 	.about-a{
@@ -584,13 +584,13 @@ P{
 		text-align: center;
 		}
 	
-	.ad, .about, .life, .square, .collection, .anecdote, .footer{
+	.poster, .about, .life, .square, .collection, .anecdote, .footer{
 		max-width:95%;
 	}
 	.swiper1{
 		max-width: 100%;
 	}
-	.ad .swiper-slide img{
+	.poster .swiper-slide img{
 		max-width:100%;
 	}
 	.about-a{
