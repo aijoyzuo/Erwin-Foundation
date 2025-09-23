@@ -25,7 +25,7 @@ $(document).ready(function () {
 });
 
 //icon循環播放
-$(document).ready(function() {
+/*$(document).ready(function() {
     // 設置動畫循環的時間（毫秒）
     const animationDuration = 5000; // 2 秒
 
@@ -37,10 +37,10 @@ $(document).ready(function() {
 
         $('#animatedElement').addClass('animate__animated animate__flipInY');
     }, animationDuration);
-});
+});*/
 //hello world
 $(document).ready(function () {
-    ScrollReveal().reveal('.about-a, .animatedElement, .life-a, .life-d, .life-c, .square-a, .square-b, .swiper, .anecdote-a');
+    ScrollReveal().reveal('.about-a, #animatedElement, .life-a, .life-d, .life-c, .square-a, .square-b, .swiper, .anecdote-a');
 });
 
 //swiper

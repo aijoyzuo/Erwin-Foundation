@@ -102,6 +102,8 @@ table {
 	text-align: center;
 }
 
+
+
 .othersite{
 	width:135px;
 	position: absolute;
@@ -441,6 +443,10 @@ P{
 	.header li a, .header li span{
 		padding: 20px;
 	}
+
+	.menu>li>a{
+		display: none;
+	}
 	.poster, .about, .life, .square, .collection, .anecdote, .footer{
 		max-width:95%;
 	}
@@ -475,9 +481,7 @@ P{
 		max-width: 95%;
 		height: 100%;
 	}
-	.menu>li>a{
-		display: none;
-	}
+	
 	.header li span{
 		padding: 20px;
 	}
@@ -652,4 +656,25 @@ P{
 	}
 
 	
+}
+/* 限定頭像動畫的重繪範圍，避免牽動旁邊 li */
+#animatedElement{  
+  display: inline-block;
+  contain: layout paint;    /* 關鍵：切斷 layout/paint 傳播 */
+  isolation: isolate;       /* 新 stacking context */
+  will-change: transform;   /* 讓 GPU 合成層只在這個區塊 */
+}
+
+#animatedElement img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  animation: ef-spinY 5s linear infinite; /* 直接用 CSS 無限動畫 */
+}
+
+@keyframes ef-spinY{
+  from{ transform: rotateY(0deg); }
+  to  { transform: rotateY(360deg); }
 }
