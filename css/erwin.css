@@ -72,7 +72,7 @@ table {
 	padding: 12px;
 	text-decoration: none;
 	font-family: Caption;
-	font-size: 20px;
+	font-size: 16px;
 	color: white;
 }
 .header li a:hover, span:hover{
@@ -91,7 +91,7 @@ table {
 	font-family: "Black Ops One", system-ui;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 20px;
+	font-size: 16px;
 	color: #ffd900f0;
 	text-decoration: none;
 }
@@ -145,7 +145,7 @@ h2{
 	border-left: 5px solid #4e471e;
 }
 h3{
-	font-size: 20px;
+	font-size: 16px;
 	line-height: 110%;
 	font-family: Caption;
 	font-weight: 400;
@@ -656,25 +656,4 @@ P{
 	}
 
 	
-}
-/* 限定頭像動畫的重繪範圍，避免牽動旁邊 li */
-#animatedElement{  
-  display: inline-block;
-  contain: layout paint;    /* 關鍵：切斷 layout/paint 傳播 */
-  isolation: isolate;       /* 新 stacking context */
-  will-change: transform;   /* 讓 GPU 合成層只在這個區塊 */
-}
-
-#animatedElement img{
-  width: 100%;
-  height: 100%;
-  display: block;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-  animation: ef-spinY 5s linear infinite; /* 直接用 CSS 無限動畫 */
-}
-
-@keyframes ef-spinY{
-  from{ transform: rotateY(0deg); }
-  to  { transform: rotateY(360deg); }
 }
