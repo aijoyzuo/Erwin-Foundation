@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--meta:vp-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>士兵留聲機</title>
+    <meta property="og:description" content="十月十四日為歷史上所載艾爾文的生日，歡迎留下您對他的祝福。" />
+    <link rel="icon" href="img/messageboard/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/messageboard.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!--google字體-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+ 
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header-bg">
+            <h1>朋友啊，在沒有城牆的拂曉中再會吧。</h1>
+            <div class="header">
+                <p id="myElement1" class="animate__fadeInUp" style="display: none;">艾爾文‧史密斯放棄了對他而言，比人類勝利更重要的真相，率領調查兵團為帕拉迪島闢出生路，時至今日，許多經歷殖民統治的國家也在解殖歷程中，為民族自決的勝利奮鬥，而抉擇是否要成為一名「惡魔」。</p>
+                <P id="myElement2" class="animate__fadeInUp" style="display: none;">在這條血路上，有無數未曾留名的夥伴犧牲，艾爾文作為團長雖然未能親眼見證，他英勇的士兵終究將獻出的心臟送達了真相的彼方。</P>
+            </div>
+        </div>
+        <div class="comment-bg">
+            <div class="comment">
+                <h2>留 聲 機</h2>
+                <p>十月十四日為歷史上所載艾爾文的生日，<br>歡迎留下您對他的祝福。</p>
+                <!-- 輸入框 先宣告submit不回傳 再定義各個欄位form內容 -->
+                <form action="" method="post" onsubmit="return false;" class="form">
+                    <INPUT TYPE="text" id="username" name="username" value="" placeholder="你的名字" class="BG-Copy" autocomplete="name">
+                    <TEXTAREA NAME="feedback" id="feedback" ROWS="5" COLS="62" placeholder="想說的話"
+                        class="BG-Copy"></TEXTAREA>
+                    <br>
+                    <!-- 定義送出鍵的動作，使用JavaScript的function-->
+                    <INPUT TYPE="submit" VALUE="送出" class="Base" onclick="processFormData(); addMsg()">
+                </form>
+            </div>
+        </div>
+        <div class="result-bg">
+            <div class="result">
+                    <h2>士 兵 的 聲 音</h2>
+                <!-- 表格定義 設定置中 -->
+                <table id="Feedback_table">
+                    <tr>
+                        <th width="150px">時間</th>
+                        <th width="130px">姓名</th>
+                        <th width="320px">留聲內容</th>
+                    </tr>
+                    <tr>
+                        <td>2024/10/14 上午0:00:00</td>
+                        <td>Levi</td>
+                        <td>O Captain, My Captain.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer">
+            <h4>©Erwin Foundation / Founder:zuo<br>For the celebration of October 10th, 2024.</h4>
+        </div>
+    </div>
+    <div class="back">
+        <i class="fa-solid fa-circle-up"></i>
+    </div>
+</body>
+<!--引用js-->
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/messageboard.js"></script>
+
+
+</html>
