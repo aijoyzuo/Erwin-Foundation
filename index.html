@@ -27,45 +27,76 @@
 
 <body>
     <div class="wrap">
-        <div class="header-bg">
-            <div class="header">
+        <nav class="navbar">
+            <div class="nav-container">
                 <a href="#" class="logo">
-                    <img src="https://images.plurk.com/UtbUmX81ltjwCg3ucC3fO.png">Erwin Foundation</a>
-                <ul class="menu">
-                    <li><a href="#section1" class="dropdown">本基金會</a></li>
-                    <li><a href="#section2" class="dropdown">艾爾文生平</a></li>
-                    <li><a href="#section3" class="dropdown">史密斯廣場</a></li>
-                    <li><a href="#section4" class="dropdown">文物典藏</a></li>
-                    <li><a href="#section5" class="dropdown">團長軼聞</a></li>
-                    <li><span class="suport dropdown">支持我們 <i class="fa-solid fa-angle-down fa-2xs"></i></span>
-                        <ul class="othersite othershort">
-                            <li><a href="phonograph.html" title="士兵留聲機" target="_blank" class="msb"><i
-                                        class="fa-solid fa-comment"></i>　留言支持</a></li>
-                            <li><a href="sponsor.html"
-                                    title="團長喜歡你這樣" target="_blank" class="money"><i
-                                        class="fa-solid fa-circle-dollar-to-slot"></i>　贊助支持</a></li>
-
+                    <img src="https://images.plurk.com/UtbUmX81ltjwCg3ucC3fO.png" alt="Logo"
+                        style="height: 32px; vertical-align: middle;">
+                    <span>Erwin Foundation</span>
+                </a>
+                <div class="hamburger" id="hamburgerBtn">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#section1">本基金會</a></li>
+                    <li><a href="#section2">艾爾文生平</a></li>
+                    <li><a href="#section3">史密斯廣場</a></li>
+                    <li><a href="#section4">文物典藏</a></li>
+                    <li><a href="#section5">團長軼聞</a></li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">支持我們</a>
+                        <ul class="submenu">
+                            <li><a href="phonograph.html" target="_blank"><i class="fa-solid fa-comment"></i> 留言支持</a>
+                            </li>
+                            <li><a href="sponsor.html" target="_blank"><i class="fa-solid fa-circle-dollar-to-slot"></i>
+                                    贊助支持</a></li>
                         </ul>
-
                     </li>
-                    <li><span class="relatedweb dropdown">關聯網站 <i class="fa-solid fa-angle-down fa-2xs"></i></span>
-                        <ul class="othersite">
-                            <li><a href="https://woffymilk.github.io/MrAckerman/index.html" title="second-life"
-                                    target="_blank" class="second-life"><i class="fa-brands fa-youtube"></i>　阿卡曼先生頻道</a>
-                            </li>
-                            <li><a href="https://woffymilk.github.io/2021Hange/index.html" title="14th commander"
-                                    target="_blank" class="14th"><i class="fa-solid fa-glasses"></i>　韓吉‧佐耶紀念網</a></li>
-                            <li><a href="https://www.instagram.com/aot_paradis_happy/" title="歡樂一百點" target="_blank"
-                                    class="paradis"><i class="fa-brands fa-instagram"></i>　-新帕島康樂隊-</a></li>
-                            <li><a href="https://www.youtube.com/watch?v=zR96chkYc08&t=1s" title="百駿圖敬自由"
-                                    target="_blank" class="horse"><i class="fa-solid fa-horse-head"></i>　馬的圖鑑成果展</a>
-                            </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">關聯網站</a>
+                        <ul class="submenu">
+                            <li><a href="https://woffymilk.github.io/MrAckerman/index.html" target="_blank"><i
+                                        class="fa-brands fa-youtube"></i> 阿卡曼先生頻道</a></li>
+                            <li><a href="https://woffymilk.github.io/2021Hange/index.html" target="_blank"><i
+                                        class="fa-solid fa-glasses"></i> 韓吉‧佐耶紀念網</a></li>
+                            <li><a href="https://www.instagram.com/aot_paradis_happy/" target="_blank"><i
+                                        class="fa-brands fa-instagram"></i> -新帕島康樂隊-</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=zR96chkYc08&t=1s" target="_blank"><i
+                                        class="fa-solid fa-horse-head"></i> 馬的圖鑑成果展</a></li>
                         </ul>
-
                     </li>
                 </ul>
             </div>
-        </div>
+            <!-- 手機版選單 -->
+            <ul class="mobile-menu" id="mobileMenu">
+                <li class="mobile-hide"><a href="#section1">本基金會</a></li>
+                <li class="mobile-hide"><a href="#section2">艾爾文生平</a></li>
+                <li class="mobile-hide"><a href="#section3">史密斯廣場</a></li>
+                <li class="mobile-hide"><a href="#section4">文物典藏</a></li>
+                <li class="mobile-hide"><a href="#section5">團長軼聞</a></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">支持我們</a>
+                    <ul class="submenu">
+                        <li><a href="phonograph.html" target="_blank"><i class="fa-solid fa-comment"></i> 留言支持</a></li>
+                        <li><a href="sponsor.html" target="_blank"><i class="fa-solid fa-circle-dollar-to-slot"></i>
+                                贊助支持</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">關聯網站</a>
+                    <ul class="submenu">
+                        <li><a href="https://woffymilk.github.io/MrAckerman/index.html" target="_blank"><i
+                                    class="fa-brands fa-youtube"></i> 阿卡曼先生頻道</a></li>
+                        <li><a href="https://woffymilk.github.io/2021Hange/index.html" target="_blank"><i
+                                    class="fa-solid fa-glasses"></i> 韓吉‧佐耶紀念網</a></li>
+                        <li><a href="https://www.instagram.com/aot_paradis_happy/" target="_blank"><i
+                                    class="fa-brands fa-instagram"></i> -新帕島康樂隊-</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=zR96chkYc08&t=1s" target="_blank"><i
+                                    class="fa-solid fa-horse-head"></i> 馬的圖鑑成果展</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
         <div class="content">
             <div class="poster">
                 <h2>近期活動</h2>
@@ -74,21 +105,11 @@
                         <div class="swiper-slide"><img src="img/AD/AD3.jpg"></div>
                         <div class="swiper-slide"><img src="img/AD/AD2.jpg"></div>
                         <div class="swiper-slide"><img src="img/AD/AD1.jpg"></div>
-                    </div>                 
+                    </div>
                 </div>
                 <!-- Swiper JS -->
-                <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-                <!-- Initialize Swiper -->
-                <script>
-                    var swiper1 = new Swiper(".swiper1", {
-                        effect: "fade",
-                        loop: true,
-                        speed: 2000,
-                        autoplay: {
-                            delay: 2500,
-                        },
-                    });
-                </script>
+              
+       
             </div>
             <div></div>
             <div class="about" id="section1">
@@ -152,8 +173,8 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide"><img src="img/boject/bolotie.jpg">
                             <div class="collection-a">
-                                <h3>波洛領結</h3>
-                                <p>本基金會館藏為複製品。<br>艾爾文升任團長後使用的波洛領結，真品在艾爾文於瑪麗亞之牆奪還戰殉職數月之後，隨同下葬。</p>
+                                <h3>波洛領帶</h3>
+                                <p>本基金會館藏為複製品。<br>艾爾文升任團長後使用的波洛領帶，真品在艾爾文於瑪麗亞之牆奪還戰殉職數月之後，隨同下葬。</p>
                             </div>
                         </div>
                         <div class="swiper-slide"><img src="img/boject/titan.jpg">
@@ -173,33 +194,8 @@
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-scrollbar"></div>
-                    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-                    <script>const swiper = new Swiper('.swiper', {
-                            // Optional parameters 加入各種特效可以去查SWIPER的API
-                            direction: 'horizontal',
-                            speed: 1500,
-                            // autoplay: {
-                            // delay: 2000,
-                            // },
-                            loop: true,
-
-                            // If we need pagination
-                            pagination: {
-                                el: '.swiper-pagination',
-                            },
-
-                            // Navigation arrows
-                            navigation: {
-                                nextEl: '.swiper-button-next',
-                                prevEl: '.swiper-button-prev',
-                            },
-
-                            // And if we need scrollbar
-                            scrollbar: {
-                                el: '.swiper-scrollbar',
-                            },
-                        });
-                    </script>
+                    
+                 
                 </div>
             </div>
             <div class="anecdote" id="section5">
@@ -232,54 +228,11 @@
             </div>
         </div>
     </div>
-
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/erwin.js"></script>
     <script src="js/lightbox/lightbox-plus-jquery.js"></script>
-    <script>$(document).ready(function () {
-            if (window.innerWidth <= 431) {
-                $(".suport").html('支持 <i class="fa-solid fa-angle-down fa-2xs"></i>');
-                $(".msb").html('<i class="fa-solid fa-comment"></i>　留言');
-                $(".money").html('<i class="fa-solid fa-circle-dollar-to-slot"></i>　贊助');
-                $(".relatedweb").html('關聯 <i class="fa-solid fa-angle-down fa-2xs"></i>');
-                $(".second-life").html('<i class="fa-brands fa-youtube"></i>　阿卡曼');
-                $(".14th").html('<i class="fa-solid fa-glasses"></i>　韓　吉');
-                $(".paradis").html('<i class="fa-brands fa-instagram"></i>　康樂隊');
-                $(".horse").html('<i class="fa-solid fa-horse-head"></i>　馬圖鑑');
-            } else {
-                $(".suport").html('支持我們 <i class="fa-solid fa-angle-down fa-2xs"></i>');
-                $(".msb").html('<i class="fa-solid fa-comment"></i>　留言支持');
-                $(".money").html('<i class="fa-solid fa-circle-dollar-to-slot"></i>　贊助支持');
-                $(".relatedweb").html('關聯網站 <i class="fa-solid fa-angle-down fa-2xs"></i>');
-                $(".second-life").html('<i class="fa-brands fa-youtube"></i>　阿卡曼先生頻道');
-                $(".14th").html('<i class="fa-solid fa-glasses"></i>　韓吉‧佐耶紀念網');
-                $(".paradis").html('<i class="fa-brands fa-instagram"></i>　-新帕島康樂隊-');
-                $(".horse").html('<i class="fa-solid fa-horse-head"></i>　馬的圖鑑成果展');
-            }
 
-            // To handle window resize
-            $(window).resize(function () {
-                if (window.innerWidth <= 431) {
-                    $(".suport").html('支持 <i class="fa-solid fa-angle-down fa-2xs"></i>');
-                    $(".msb").html('<i class="fa-solid fa-comment"></i>　留言');
-                    $(".money").html('<i class="fa-solid fa-circle-dollar-to-slot"></i>　贊助');
-                    $(".relatedweb").html('關聯 <i class="fa-solid fa-angle-down fa-2xs"></i>');
-                    $(".second-life").html('<i class="fa-brands fa-youtube"></i>　阿卡曼');
-                    $(".14th").html('<i class="fa-solid fa-glasses"></i>　韓　吉');
-                    $(".paradis").html('<i class="fa-brands fa-instagram"></i>　康樂隊');
-                    $(".horse").html('<i class="fa-solid fa-horse-head"></i>　馬圖鑑');
-                } else {
-                    $(".suport").html('支持我們 <i class="fa-solid fa-angle-down fa-2xs"></i>');
-                    $(".msb").html('<i class="fa-solid fa-comment"></i>　留言支持');
-                    $(".money").html('<i class="fa-solid fa-circle-dollar-to-slot"></i>　贊助支持');
-                    $(".relatedweb").html('關聯網站 <i class="fa-solid fa-angle-down fa-2xs"></i>');
-                    $(".second-life").html('<i class="fa-brands fa-youtube"></i>　阿卡曼先生頻道');
-                    $(".14th").html('<i class="fa-solid fa-glasses"></i>　韓吉‧佐耶紀念網');
-                    $(".paradis").html('<i class="fa-brands fa-instagram"></i>　-新帕島康樂隊-');
-                    $(".horse").html('<i class="fa-solid fa-horse-head"></i>　馬的圖鑑成果展');
-                }
-            });
-        });</script>
 
 </body>
 

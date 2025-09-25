@@ -1,76 +1,88 @@
+
 $(document).ready(function () {
-    /*下拉選單*/
-    $('.dropdown').click(function (event) {
-        /* Act on the event */
+ $(function () {
+  const $nav = $('.navbar');
+  const $mobileMenu = $('#mobileMenu');
 
-        $('.dropdown').toggleClass('active');
-        $(this).next('.othersite').slideToggle(700);
-        $(this).parent('li').siblings('li').children('.othersite').slideUp();
-    });
-    /*上移錯視*/
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('scrolled');
-            } else {
-                entry.target.classList.remove('scrolled');
-            }
-        });
-    });
+  // 漢堡開關（只切換 .is-open，不動 inline style）
+  $('#hamburgerBtn').on('click', function (e) {
+    e.stopPropagation();
+    $nav.toggleClass('is-open');
+  });
 
-    const targets = document.querySelectorAll('.scroll-element');
-    targets.forEach(target => {
-        observer.observe(target);
-    });
+  // 手機版：點 dropdown-toggle 只展開/收起次選單，不關整個菜單
+  $mobileMenu.on('click', '.dropdown-toggle', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).siblings('.submenu').slideToggle(200);
+  });
+
+  // ✅ 只在點到「次選單內的超連結」時才關閉整個漢堡
+  $mobileMenu.on('click', '.submenu a', function () {
+    $nav.removeClass('is-open');
+    // 可選：順便把所有次選單收起，避免殘留 inline style
+    $mobileMenu.find('.submenu').slideUp(0);
+  });
+
+  // （可選）點擊 navbar 外部就關閉
+  $(document).on('click', function (e) {
+    if (!$(e.target).closest('.navbar').length) {
+      $nav.removeClass('is-open');
+      $mobileMenu.find('.submenu').slideUp(0);
+    }
+  });
+
+  // 視窗放大回桌機時，重置狀態
+  $(window).on('resize', function () {
+    if (window.innerWidth > 768) {
+      $nav.removeClass('is-open');
+      $mobileMenu.find('.submenu').removeAttr('style');
+    }
+  });
 });
+  /* === 桌機版下拉：用 CSS :hover 已足夠；不需要 jQuery 另外綁 === */
+  // 若你一定要點擊觸發桌機版：再另外針對 .nav-menu .dropdown-toggle 綁 click
 
-//icon循環播放
-/*$(document).ready(function() {
-    // 設置動畫循環的時間（毫秒）
-    const animationDuration = 5000; // 2 秒
+  /* === 上移錯視（IntersectionObserver） === */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      entry.target.classList.toggle('scrolled', entry.isIntersecting);
+    });
+  });
+  document.querySelectorAll('.scroll-element').forEach(t => io.observe(t));
 
-    setInterval(function() {
-        $('#animatedElement').removeClass('animate__flipInY');
-        
-        // 觸發重繪，確保動畫可以重新開始
-        void $('#animatedElement')[0].offsetWidth; 
-
-        $('#animatedElement').addClass('animate__animated animate__flipInY');
-    }, animationDuration);
-});*/
-// icon 循環播放（重啟版，無 reflow）
-$(document).ready(function () {
-  const el = document.querySelector('#animatedElement img');
-
-  // 定義一段旋轉動畫（單次播放）
-  const keyframes = [
-    { transform: 'rotateY(0deg)' },
-    { transform: 'rotateY(360deg)' }
-  ];
-  const timing = {
-    duration: 1200,       // 你要轉多久
-    easing: 'ease-in-out',
-    iterations: 1,        // 只播一次（等下每 N 秒重新開新的一段）
-    fill: 'none'          // 播完回到初始狀態
-  };
-
-  // 每 5 秒重啟一次動畫（不需強制回流）
-  const intervalMs = 5000;
-  setInterval(() => {
-    el.animate(keyframes, timing); // 直接開新動畫
-  }, intervalMs);
-});
-//hello world
-$(document).ready(function () {
+  /* === ScrollReveal（你有引 CDN） === */
+  if (window.ScrollReveal) {
     ScrollReveal().reveal('.about-a, #animatedElement, .life-a, .life-d, .life-c, .square-a, .square-b, .swiper, .anecdote-a');
-});
+  }
 
-//swiper
-$(document).ready(function () {
-    const swiper = new Swiper('.swiper-container', {
-        // 其他配置...
-        navigation: false, // 確保這個設置是 false
+  /* === 旋轉硬幣：每 5 秒旋一次 === */
+  const coin = document.querySelector('#animatedElement img');
+  if (coin && coin.animate) {
+    const keyframes = [{transform:'rotateY(0deg)'},{transform:'rotateY(360deg)'}];
+    const timing = {duration:1200, easing:'ease-in-out', iterations:1, fill:'none'};
+    setInterval(() => coin.animate(keyframes, timing), 5000);
+  }
+
+  /* === Swiper：集中初始化，避免重複 === */
+  // 海報輪播
+  if (window.Swiper) {
+    new Swiper('.swiper1', {
+      effect: 'fade',
+      loop: true,
+      speed: 2000,
+      autoplay: { delay: 2500 },
     });
-});
 
+    // 典藏輪播
+    new Swiper('.swiper', {
+      direction: 'horizontal',
+      speed: 1500,
+      loop: true,
+      pagination: { el: '.swiper-pagination' },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      scrollbar: { el: '.swiper-scrollbar' },
+    });
+  }
+});
 
