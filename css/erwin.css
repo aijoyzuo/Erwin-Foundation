@@ -7,12 +7,13 @@ table { border-collapse:collapse; border-spacing:0; }
 /* ===== 色彩主題（想改色只改這裡） ===== */
 :root{
   --nav-bg:        #000000;
-  --nav-border:    #e5e5e5;
+  --nav-border:    #000000;
   --nav-text:      #d6c563;
   --nav-text-hover:#7a6a2a;
   --submenu-bg:    #0b0b0b;
-  --submenu-border:#262626;
-  --submenu-hover: #1f2937;
+  --submenu-border:#d6c563;
+  --submenu-hover: #d6c563;
+  --submenu-hover-color:#0b0b0b;
 }
 
 /* ===== 版面通用 ===== */
@@ -78,6 +79,7 @@ p{
 .navbar .hamburger{ display:none; font-size:1.5rem; cursor:pointer; }
 .navbar .hamburger i{ color:var(--nav-text); }
 
+
 /* 桌機主選單 */
 .navbar .nav-menu{ display:flex; gap:.25rem; }
 .navbar .nav-menu > li{ position:relative; }
@@ -97,20 +99,22 @@ p{
 
 /* 桌機：次選單（hover 展開） */
 .navbar .nav-menu li .submenu{
-  position:absolute; top:100%; left:0; min-width:200px;
+  position:absolute; top:100%; right:0; min-width:170px;
   background:var(--submenu-bg);
   border:1px solid var(--submenu-border);
   box-shadow:0 8px 24px rgba(0,0,0,.25);
   display:none;
+  border-radius: 1rem;
+  text-align: center; 
 }
-.navbar .nav-menu li:hover > .submenu{ display:block; }
+.navbar .nav-menu li:hover > .submenu{ display:block; overflow: hidden;}
 
 /* 次選單項目（整排可點 + hover 色） */
 .navbar .nav-menu li .submenu a{
   display:block; padding:.5rem .75rem;
   color:#e5e7eb; text-decoration:none;
 }
-.navbar .nav-menu li .submenu a:hover{ background:var(--submenu-hover); }
+.navbar .nav-menu li .submenu a:hover{ color:var(--submenu-hover-color);background:var(--submenu-hover); }
 
 /* 手機：顯示漢堡，隱藏桌機選單 */
 @media (max-width:768px){
@@ -124,14 +128,14 @@ p{
   background:var(--nav-bg);
   border-top:1px solid var(--nav-border);
   max-height:0; overflow:hidden; opacity:0;
-  transition:max-height .3s ease, opacity .3s ease;
+  transition:max-height .5s ease, opacity .3s ease;
   will-change:max-height, opacity;
 }
 .navbar.is-open .mobile-menu{ max-height:80vh; opacity:1; }
 
 /* 手機主選單項目（整排可點 + hover 色） */
 .navbar .mobile-menu > li > a,
-.navbar .mobile-menu > li > .dropdown-toggle{
+.navbar .mobile-menu > li > .dropdown-toggle{  
   display:block; padding:.75rem 1rem;
   color:var(--nav-text); text-decoration:none;
 }
@@ -142,6 +146,9 @@ p{
 }
 
 /* 手機：次選單（預設關閉，由 jQuery slideToggle 控制） */
+.navbar .mobile-menu .submenu li .indentation{
+  padding-left: 12px;
+}
 .navbar .mobile-menu .submenu{
   display:none; background:var(--submenu-bg);
   border-top:1px solid var(--submenu-border);
@@ -150,7 +157,7 @@ p{
   display:block; padding:.5rem 1rem;
   color:#e5e7eb; text-decoration:none;
 }
-.navbar .mobile-menu .submenu a:hover{ background:var(--submenu-hover); }
+.navbar .mobile-menu .submenu a:hover{ color:var(--submenu-hover-color); background:var(--submenu-hover); }
 
 /* 手機：若有要隱藏的連結（可選） */
 @media (max-width:768px){
