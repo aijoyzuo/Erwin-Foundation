@@ -57,7 +57,7 @@ body.sticky-footer .content {
 /* ===== 內容容器 ===== */
 .content{
   max-width:100%;
-  padding-top:150px; /* 避免被 fixed navbar 蓋住 */
+  padding-top:100px; /* 避免被 fixed navbar 蓋住 */
   padding-bottom:50px;
   background-image:url("../img/paperboard2.png");
   background-repeat:repeat;
