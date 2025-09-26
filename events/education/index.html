@@ -1,60 +1,93 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>推廣教育｜Erwin Foundation</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" href="/Erwin-Foundation/img/coin/htmlicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="/Erwin-Foundation/css/erwin.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <style>
-    .edu-wrap{max-width:960px;margin:28px auto;padding:0 16px}
-    .edu-item{background:#fff;border-radius:8px;padding:18px 20px;margin-bottom:14px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
-    .edu-item h3{margin:0 0 6px}
-    .edu-meta{color:#888;font-size:.92rem;margin-bottom:6px}
-    .tag{display:inline-block;font-size:.82rem;padding:2px 8px;border-radius:999px;background:#eef; margin-right:6px}
-  </style>
-  <script src="https://unpkg.com/scrollreveal"></script>
+	<meta charset="UTF-8" />
+	<title>推廣教育｜Erwin Foundation</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<link rel="icon" href="../../img/coin/htmlicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="../../css/erwin.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+	<style>
+		.edu-wrap {
+			max-width: 960px;
+			margin: 28px auto;
+			padding: 0 16px
+		}
+
+		.edu-item {
+			background: #fff;
+			border-radius: 8px;
+			padding: 18px 20px;
+			margin-bottom: 14px;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, .08)
+		}
+
+		.edu-item h3 {
+			margin: 0 0 6px
+		}
+
+		.edu-meta {
+			color: #888;
+			font-size: .92rem;
+			margin-bottom: 6px
+		}
+
+		.tag {
+			display: inline-block;
+			font-size: .82rem;
+			padding: 2px 8px;
+			border-radius: 999px;
+			background: #eef;
+			margin-right: 6px
+		}
+	</style>
+	<script src="https://unpkg.com/scrollreveal"></script>
 </head>
+
 <body>
-  <div class="wrap">
-    <div data-include="/Erwin-Foundation/partials/header.html"></div>
+	<div class="wrap">
+		<!-- 共用 header 位置 -->
+		<div data-include="/partials/header.html"></div>
 
-    <main class="content edu-wrap">
-      <nav class="breadcrumb"><a href="/Erwin-Foundation/">首頁</a> › 推廣教育</nav>
-      <h1>推廣教育｜歷年活動</h1>
+		<main class="content edu-wrap">
+			<nav class="breadcrumb"> <a data-root="/">首頁</a> › 推廣教育</nav>
+			<h1>推廣教育｜歷年活動</h1>
 
-      <section>
-        <!-- 範例項目：之後你可以一直加 -->
-        <div class="edu-item">
-          <h3>2025 課外走讀：史密斯廣場的公共記憶</h3>
-          <div class="edu-meta">日期：2025-09-10　地點：史密斯廣場　對象：高中職</div>
-          <div>
-            <span class="tag">走讀</span>
-            <span class="tag">地方學</span>
-          </div>
-          <p>透過場域導覽與互動任務，認識廣場從政治儀式到公共藝術的轉變…</p>
-        </div>
+			<section>
+				<!-- 範例項目：之後你可以一直加 -->
+				<div class="edu-item">
+					<h3>2025 課外走讀：史密斯廣場的公共記憶</h3>
+					<div class="edu-meta">日期：2025-09-10　地點：史密斯廣場　對象：高中職</div>
+					<div>
+						<span class="tag">走讀</span>
+						<span class="tag">地方學</span>
+					</div>
+					<p>透過場域導覽與互動任務，認識廣場從政治儀式到公共藝術的轉變…</p>
+				</div>
 
-        <div class="edu-item">
-          <h3>2024 寒假工作坊：圖像修復入門</h3>
-          <div class="edu-meta">日期：2024-02-02　地點：基金會教室　對象：大專</div>
-          <div>
-            <span class="tag">工作坊</span>
-            <span class="tag">保存修復</span>
-          </div>
-          <p>以艾爾文雕像影像為案例，示範基礎影像清理與重建倫理…</p>
-        </div>
-      </section>
-    </main>
+				<div class="edu-item">
+					<h3>2024 寒假工作坊：圖像修復入門</h3>
+					<div class="edu-meta">日期：2024-02-02　地點：基金會教室　對象：大專</div>
+					<div>
+						<span class="tag">工作坊</span>
+						<span class="tag">保存修復</span>
+					</div>
+					<p>以艾爾文雕像影像為案例，示範基礎影像清理與重建倫理…</p>
+				</div>
+			</section>
+		</main>
 
-    <div data-include="/Erwin-Foundation/partials/footer.html"></div>
-  </div>
+		<!-- 共用 footer 位置 -->
+		<div data-include="/partials/footer.html"></div>
+	</div>
 
-  <!-- JS：以站內絕對路徑載入 -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="/Erwin-Foundation/js/jquery-3.7.1.min.js"></script>
-  <script src="/Erwin-Foundation/js/lightbox/lightbox-plus-jquery.js"></script>
-  <script src="/Erwin-Foundation/js/erwin.js"></script>
+	<!-- JS：以站內絕對路徑載入 -->
+	<!-- 頁尾的腳本（順序不變） -->
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script src="../../js/jquery-3.7.1.min.js"></script>
+	<script src="../../js/lightbox/lightbox-plus-jquery.js"></script>
+	<script src="../../js/erwin.js"></script>
 </body>
+
 </html>

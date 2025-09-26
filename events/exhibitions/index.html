@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <title>藝文展覽｜Erwin Foundation</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" href="/Erwin-Foundation/img/coin/htmlicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="/Erwin-Foundation/css/erwin.css" />
+   <link rel="icon" href="../../img/coin/htmlicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="../../css/erwin.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
     .post-list{max-width:960px;margin:28px auto;padding:0 16px}
@@ -19,11 +19,12 @@
 </head>
 <body>
   <div class="wrap">
-    <div data-include="/Erwin-Foundation/partials/header.html"></div>
+    <!-- 共用 header 位置 -->
+    <div data-include="/partials/header.html"></div>
 
     <main class="content">
       <nav class="breadcrumb" style="max-width:960px;margin:18px auto 0;padding:0 16px;">
-        <a href="/Erwin-Foundation/">首頁</a> › 藝文展覽
+        <a data-root="/">首頁</a> › 藝文展覽
       </nav>
 
       <section class="post-list">
@@ -32,19 +33,22 @@
           <div class="meta">展期：2025-10-10 ~ 2026-01-05　地點：史密斯廣場展亭</div>
           <img class="thumb" src="/Erwin-Foundation/img/AD/AD1.jpg" alt="展覽縮圖">
           <p>從處刑台到雕像，廣場如何被權力與記憶改寫？本展匯集照片、手稿與口述歷史，呈現公共空間的多重意義…</p>
-          <a class="read-more" href="/Erwin-Foundation/events/exhibitions/sample-2025.html">繼續閱讀</a>
+          <a class="read-more" data-root="/events/exhibitions/sample-2025.html">繼續閱讀</a>
+
         </article>
 
         <!-- 再加更多卡片即可 -->
       </section>
     </main>
 
-    <div data-include="/Erwin-Foundation/partials/footer.html"></div>
+    <!-- 共用 footer 位置 -->
+    <div data-include="/partials/footer.html"></div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="/Erwin-Foundation/js/jquery-3.7.1.min.js"></script>
-  <script src="/Erwin-Foundation/js/lightbox/lightbox-plus-jquery.js"></script>
-  <script src="/Erwin-Foundation/js/erwin.js"></script>
+  <!-- 頁尾的腳本（順序不變） -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="../../js/jquery-3.7.1.min.js"></script>
+<script src="../../js/lightbox/lightbox-plus-jquery.js"></script>
+<script src="../../js/erwin.js"></script>
 </body>
 </html>
