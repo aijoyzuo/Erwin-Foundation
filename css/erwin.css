@@ -4,6 +4,8 @@ ul, ol { list-style:none; }
 table { border-collapse:collapse; border-spacing:0; }
 *, *::before, *::after { box-sizing:border-box; }
 
+html { scroll-behavior: smooth; }
+
 /* ===== 色彩主題（想改色只改這裡） ===== */
 :root{
   --nav-bg:        #000000;
@@ -38,6 +40,18 @@ p{
   font-size:16px;
   line-height:170%;
   padding-left:25px;
+}
+
+/* 固定頁尾（只在 body 有 .sticky-footer 時生效） */
+body.sticky-footer .footer-bg {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 999;
+}
+
+/* 固定頁尾時，內容加下邊距免被蓋住（你的 footer 高 60px，給 120px 比較安全） */
+body.sticky-footer .content {
+  padding-bottom: 120px;
 }
 
 /* ===== 內容容器 ===== */

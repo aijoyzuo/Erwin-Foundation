@@ -196,6 +196,17 @@ function resolveIncludePath(p) {
       warn('Swiper not found. Skipping sliders.');
     }
 
+    (function () {
+      // 這裡的 BASE 你已經有定義
+      const homePaths = [BASE + '/', BASE + '/index.html'];
+      const isHome = homePaths.includes(location.pathname);
+      if (!isHome) {
+        document.body.classList.add('sticky-footer');
+      } else {
+        document.body.classList.remove('sticky-footer');
+      }
+    })();
+
     log('UI initialized.');
   });
 
