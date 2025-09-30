@@ -226,3 +226,21 @@ function resolveIncludePath(p) {
     initAfterPartials();
   });
 })();
+
+// 解決li容易消失問題-延遲消失
+const dropdowns = document.querySelectorAll('.nav-menu li');
+
+dropdowns.forEach(dropdown => {
+  let timer; // 區域變數：每個 dropdown 自己的 timer
+
+  dropdown.addEventListener('mouseenter', () => {
+    clearTimeout(timer);
+    dropdown.querySelector('.submenu')?.classList.add('show');
+  });
+
+  dropdown.addEventListener('mouseleave', () => {
+    timer = setTimeout(() => {
+      dropdown.querySelector('.submenu')?.classList.remove('show');
+    }, 200);
+  });
+});

@@ -20,11 +20,17 @@ html { scroll-behavior: smooth; }
 
 /* ===== 版面通用 ===== */
 body { line-height:1.5; }
+h1{
+  font-size:26px;
+  line-height:100%;
+  font-family: Caption, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-weight:600;
+}
 h2{
   font-size:22px;
   line-height:100%;
   font-family: Caption, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  font-weight:400;
+  font-weight:500;
   padding-left:20px;
   border-left:5px solid #4e471e;
 }
@@ -36,11 +42,13 @@ h3{
   color:#4e471e;
   padding-bottom:20px;
 }
-p{
+.section-p{
   font-size:16px;
   line-height:170%;
   padding-left:25px;
 }
+
+.thumb{width:100%;max-height:220px;object-fit:cover;border-radius:6px;margin:0px 0}
 
 /* 固定頁尾（只在 body 有 .sticky-footer 時生效） */
 body.sticky-footer .footer-bg {
@@ -113,14 +121,20 @@ body.sticky-footer .content {
 
 /* 桌機：次選單（hover 展開） */
 .navbar .nav-menu li .submenu{
-  position:absolute; top:100%; right:0; min-width:170px;
+  position:absolute; 
+  top:100%; right:0; min-width:170px;
   background:var(--submenu-bg);
   border:1px solid var(--submenu-border);
   box-shadow:0 8px 24px rgba(0,0,0,.25);
   display:none;
   border-radius: 1rem;
   text-align: center; 
+  z-index: 999; 
 }
+.submenu.show {
+  display: block;
+}
+
 .navbar .nav-menu li:hover > .submenu{ display:block; overflow: hidden;}
 
 /* 次選單項目（整排可點 + hover 色） */
@@ -129,6 +143,7 @@ body.sticky-footer .content {
   color:#e5e7eb; text-decoration:none;
 }
 .navbar .nav-menu li .submenu a:hover{ color:var(--submenu-hover-color);background:var(--submenu-hover); }
+
 
 /* 手機：顯示漢堡，隱藏桌機選單 */
 @media (max-width:768px){
