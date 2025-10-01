@@ -16,6 +16,8 @@ html { scroll-behavior: smooth; }
   --submenu-border:#d6c563;
   --submenu-hover: #d6c563;
   --submenu-hover-color:#0b0b0b;
+  --swiper-navigation-color:#7a6a2a;
+  --swiper-pagination-color:#7a6a2a;
 }
 
 /* ===== 版面通用 ===== */
@@ -329,3 +331,4 @@ body.sticky-footer .content {
   .anecdote-a img{ width:250px; }
   .footer p{ line-height:100%; }
 }
+

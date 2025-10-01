@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-  <style>
-    .post-card p {
-  white-space: nowrap;           /* 不換行 */
-  overflow: hidden;              /* 超出部分隱藏 */
-  text-overflow: ellipsis;       /* 用 ... 表示省略 */
-  max-width: 100%;               /* 可選，確保在容器內 */
-}
-  </style>
 <head>
   <meta charset="UTF-8" />
   <title>藝文展覽｜Erwin Foundation</title>
@@ -19,9 +11,11 @@
     .post-list{max-width:960px;margin:28px auto;padding:0 16px}
     .post-card{background:#fffbf4;border-radius:8px;padding:20px;margin-bottom:18px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
     .post-card h2{margin:0 0 8px}
-    .meta{color:#888;font-size:.92rem;margin-bottom:8px}
+    .post-card p { white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 100%;}   
     .read-more{display:inline-block;padding:8px 14px;border-radius:6px;text-decoration:none;background:#7a6a2a;color:#fff}
     .read-more:hover{filter:brightness(.9)}    
+    .meta { color: #888;font-size: 0.92rem;margin-top: 8px;margin-bottom: 0px;display: flex;flex-direction: column;}
+    @media (min-width: 768px) {.meta { flex-direction: row; gap: 0.5rem;}  }
   </style>
 </head>
 <body>
@@ -37,7 +31,7 @@
       <section class="post-list">
         <article class="post-card">
           <h2>海岸線手札：還原艾連‧葉卡故居</h2>
-          <div class="meta">展期：2025-10-10 ~ 2025-12-25　地點：基金會會館地下室</div>
+          <div class="meta"><span>展期：2025-10-10 ~ 2025-12-25　</span><span>地點：地下室展區</span></div>
           <img class="thumb" src="../../img/AD/AD2.jpg" alt="展覽縮圖">
           <p>帕拉迪島的海岸線總長度約為4,828公里，那意味著要搭上將近一星期的火車，才能夠繞行帕島一周。
           </p>
@@ -46,7 +40,7 @@
 
          <article class="post-card">
           <h2>「面向大海」：史密斯廣場公共藝術檔案展</h2>
-          <div class="meta">展期：2024-10-10 ~ 2024-12-25　地點：史密斯廣場</div>
+          <div class="meta"><span>展期：2024-10-10 ~ 2024-12-25　</span><span>地點：史密斯廣場</span></div>
           <img class="thumb" src="../../img/AD/AD3.jpg" alt="展覽縮圖">
           <p>從處刑台到雕像，廣場如何被權力與記憶改寫？本展覽匯集照片、手稿與口述歷史，呈現公共空間的多重意義。</p>
           <a class="read-more" data-root="/events/exhibitions/artical202401.html">繼續閱讀</a>
