@@ -1,54 +1,107 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="UTF-8" />
   <title>藝文展覽｜Erwin Foundation</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-   <link rel="icon" href="../../img/coin/htmlicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="../../css/erwin.css">
+  <link rel="icon" href="../../img/coin/htmlicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../../css/erwin.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <style>
-    .post-list{max-width:960px;margin:28px auto;padding:0 16px}
-    .post-card{background:#fffbf4;border-radius:8px;padding:20px;margin-bottom:18px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
-    .post-card h2{margin:0 0 8px}
-    .post-card p { white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 100%;}   
-    .read-more{display:inline-block;padding:8px 14px;border-radius:6px;text-decoration:none;background:#7a6a2a;color:#fff}
-    .read-more:hover{filter:brightness(.9)}    
-    .meta { color: #888;font-size: 0.92rem;margin-top: 8px;margin-bottom: 0px;display: flex;flex-direction: column;}
-    @media (min-width: 768px) {.meta { flex-direction: row; gap: 0.5rem;}  }
+  <style> 
+  .exh-wrap {
+			max-width: 960px;
+			margin: 28px auto;
+			padding: 0 16px;
+		}
+
+
+ 
+
+    .post-card {
+      background: #fffbf4;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .08)
+    }
+
+    .post-card h2 {
+      margin: 0 0 8px
+    }
+
+    .post-card p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .read-more {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      background: #7a6a2a;
+      color: #fff
+    }
+
+    .read-more:hover {
+      filter: brightness(.9)
+    }
+
+    .meta {
+      color: #888;
+      font-size: 0.92rem;
+      margin-top: 8px;
+      margin-bottom: 0px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .meta {
+        flex-direction: row;
+        gap: 0.5rem;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <!-- 共用 header 位置 -->
     <div data-include="/partials/header.html"></div>
 
     <main class="content">
-      <nav class="breadcrumb" style="max-width:960px;margin:18px auto 0;padding:0 16px;">
-        <a data-root="/">首頁</a> › 藝文展覽
-      </nav>
+      <div class="exh-wrap">
+        <nav class="breadcrumb">
+          <a data-root="/">首頁</a> › 藝文展覽
+        </nav>
+        <h1 style="padding-bottom:8px">藝文展覽｜歷年活動</h1>
 
-      <section class="post-list">
-        <article class="post-card">
-          <h2>海岸線手札：還原艾連‧葉卡故居</h2>
-          <div class="meta"><span>展期：2025-10-10 ~ 2025-12-25　</span><span>地點：地下室展區</span></div>
-          <img class="thumb" src="../../img/AD/AD2.jpg" alt="展覽縮圖">
-          <p>帕拉迪島的海岸線總長度約為4,828公里，那意味著要搭上將近一星期的火車，才能夠繞行帕島一周。
-          </p>
-          <a class="read-more" data-root="/events/exhibitions/artical202501.html">繼續閱讀</a>
-        </article>
+        <section class="">
+          <article class="post-card">
+            <h2>海岸線手札：還原艾連‧葉卡故居</h2>
+            <div class="meta"><span>展期：2025-10-10 ~ 2025-12-25　</span><span>地點：地下室展區</span></div>
+            <img class="thumb" src="../../img/AD/AD2.jpg" alt="展覽縮圖">
+            <p>帕拉迪島的海岸線總長度約為4,828公里，那意味著要搭上將近一星期的火車，才能夠繞行帕島一周。
+            </p>
+            <a class="read-more" data-root="/events/exhibitions/artical202501.html">繼續閱讀</a>
+          </article>
 
-         <article class="post-card">
-          <h2>「面向大海」：史密斯廣場公共藝術檔案展</h2>
-          <div class="meta"><span>展期：2024-10-10 ~ 2024-12-25　</span><span>地點：史密斯廣場</span></div>
-          <img class="thumb" src="../../img/AD/AD3.jpg" alt="展覽縮圖">
-          <p>從處刑台到雕像，廣場如何被權力與記憶改寫？本展覽匯集照片、手稿與口述歷史，呈現公共空間的多重意義。</p>
-          <a class="read-more" data-root="/events/exhibitions/artical202401.html">繼續閱讀</a>
-        </article>
+          <article class="post-card">
+            <h2>「面向大海」：史密斯廣場公共藝術檔案展</h2>
+            <div class="meta"><span>展期：2024-10-10 ~ 2024-12-25　</span><span>地點：史密斯廣場</span></div>
+            <img class="thumb" src="../../img/AD/AD3.jpg" alt="展覽縮圖">
+            <p>從處刑台到雕像，廣場如何被權力與記憶改寫？本展覽匯集照片、手稿與口述歷史，呈現公共空間的多重意義。</p>
+            <a class="read-more" data-root="/events/exhibitions/artical202401.html">繼續閱讀</a>
+          </article>
 
 
-        <!-- 再加更多卡片即可 -->
-      </section>
+          <!-- 再加更多卡片即可 -->
+        </section>
+      </div>
     </main>
 
     <!-- 共用 footer 位置 -->
@@ -56,9 +109,10 @@
   </div>
 
   <!-- 頁尾的腳本（順序不變） -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="../../js/jquery-3.7.1.min.js"></script>
-<script src="../../js/lightbox/lightbox-plus-jquery.js"></script>
-<script src="../../js/erwin.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="../../js/jquery-3.7.1.min.js"></script>
+  <script src="../../js/lightbox/lightbox-plus-jquery.js"></script>
+  <script src="../../js/erwin.js"></script>
 </body>
+
 </html>
