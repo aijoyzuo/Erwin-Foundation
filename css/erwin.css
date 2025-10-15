@@ -340,3 +340,9 @@ body.sticky-footer .content {
   .footer p{ line-height:100%; }
 }
 
+/*展覽li*/
+.artical-li{
+border-left: 2px solid rgb(122, 106, 42,0.6); 
+padding-left: 8px; 
+margin-bottom: 4px;
+}
