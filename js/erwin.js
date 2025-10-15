@@ -164,37 +164,60 @@ function resolveIncludePath(p) {
     }
 
     // Swiper
-    if (window.Swiper) {
-      try {
-        document.querySelectorAll('.swiper1').forEach((el) => {
-          if (el.dataset.efSwiper) return;
-          new Swiper(el, {
-            effect: 'fade',
-            loop: true,
-            speed: 2000,
-            autoplay: { delay: 2500 }
-          });
-          el.dataset.efSwiper = '1';
-        });
 
-        document.querySelectorAll('.swiper.mySwiper').forEach((el) => {
-          if (el.dataset.efSwiper) return;
-          new Swiper(el, {
-            direction: 'horizontal',
-            speed: 1500,
-            loop: true,
-            pagination: { el: '.swiper-pagination' },
-            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-            scrollbar: { el: '.swiper-scrollbar' }
+if (window.Swiper) {
+  try {
+    // ✅ 修改 swiper1 部分
+    document.querySelectorAll('.swiper1').forEach((el) => {
+      if (el.dataset.efSwiper) return;
+
+      // 找到裡面所有圖片
+      const images = el.querySelectorAll('img');
+      let loadedCount = 0;
+
+      images.forEach((img) => {
+        // 如果圖片已經載入，直接算進去
+        if (img.complete) {
+          loadedCount++;
+          if (loadedCount === images.length) initSwiper();
+        } else {
+          img.addEventListener('load', () => {
+            loadedCount++;
+            if (loadedCount === images.length) initSwiper();
           });
-          el.dataset.efSwiper = '1';
+        }
+      });
+
+      function initSwiper() {
+        new Swiper(el, {
+          effect: 'fade',
+          loop: true,
+          speed: 2000,
+          autoplay: { delay: 2500 },
         });
-      } catch (e) {
-        warn('Swiper init failed:', e);
+        el.dataset.efSwiper = '1';
       }
-    } else {
-      warn('Swiper not found. Skipping sliders.');
-    }
+    });
+
+    // 🔁 swiper.mySwiper 維持原樣
+    document.querySelectorAll('.swiper.mySwiper').forEach((el) => {
+      if (el.dataset.efSwiper) return;
+      new Swiper(el, {
+        direction: 'horizontal',
+        speed: 1500,
+        loop: true,
+        pagination: { el: '.swiper-pagination' },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        scrollbar: { el: '.swiper-scrollbar' }
+      });
+      el.dataset.efSwiper = '1';
+    });
+  } catch (e) {
+    console.warn('Swiper init failed:', e);
+  }
+} else {
+  console.warn('Swiper not found. Skipping sliders.');
+}
 
     (function () {
       // 這裡的 BASE 你已經有定義
@@ -206,6 +229,26 @@ function resolveIncludePath(p) {
         document.body.classList.remove('sticky-footer');
       }
     })();
+
+    // 回到上方按鈕初始化
+try {
+  const backToTopBtn = document.getElementById('backToTopBtn');
+
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      backToTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    console.log('[EF] BackToTop initialized');
+  } else {
+    console.warn('[EF] 無法找到 #backToTopBtn（回到上方按鈕）');
+  }
+} catch (e) {
+  console.warn('[EF] 回到上方按鈕初始化失敗：', e);
+}
 
     log('UI initialized.');
   });
@@ -244,3 +287,23 @@ dropdowns.forEach(dropdown => {
     }, 200);
   });
 });
+
+//back-to-top按鈕
+document.addEventListener('DOMContentLoaded', () => {
+  const backToTopBtn = document.getElementById('backToTopBtn');
+
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      // 顯示/隱藏按鈕
+      backToTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+
+    // 點擊滾動
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  } else {
+    console.warn("找不到 #backToTopBtn 按鈕");
+  }
+});
+
