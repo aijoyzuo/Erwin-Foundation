@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { BASE_PATH } from "@/lib/basePath";
 
 export const metadata: Metadata = {
   title: "Erwin Foundation",
   description: "本基金會旨在過去、現在、將來，向世界傳達真相與自由的可貴。",
   icons: {
-    icon: "/img/coin/htmlicon.ico",
+    icon: `${BASE_PATH}/img/coin/htmlicon.ico`,
   },
   openGraph: {
     description: "本基金會旨在過去、現在、將來，向世界傳達真相與自由的可貴。",
@@ -33,7 +34,9 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
       </head>
-      <body>{children}</body>
+      <body style={{ "--paperboard-bg": `url(${BASE_PATH}/img/paperboard2.png)` } as React.CSSProperties}>
+        {children}
+      </body>
     </html>
   );
 }

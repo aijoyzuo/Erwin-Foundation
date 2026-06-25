@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { BASE_PATH } from "@/lib/basePath";
 
 export default function CoinAnimator() {
   const imgRef = useRef<HTMLImageElement>(null);
@@ -16,7 +17,7 @@ export default function CoinAnimator() {
 
   return (
     <div id="animatedElement">
-      <img ref={imgRef} src="/img/coin/Free Gold Coin Mockup3.png" alt="" />
+      <img ref={imgRef} src={`${BASE_PATH}/img/coin/Free Gold Coin Mockup3.png`} alt="" />
     </div>
   );
 }

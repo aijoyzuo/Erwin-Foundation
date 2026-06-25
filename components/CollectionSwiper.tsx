@@ -6,20 +6,21 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
+import { BASE_PATH } from "@/lib/basePath";
 
 const items = [
   {
-    img: "/img/boject/bolotie.jpg",
+    img: `${BASE_PATH}/img/boject/bolotie.jpg`,
     title: "波洛領帶",
     text: "本基金會館藏為複製品。艾爾文升任團長後使用的波洛領帶，真品在艾爾文於瑪麗亞之牆奪還戰殉職數月之後，隨同下葬。",
   },
   {
-    img: "/img/boject/titan.jpg",
+    img: `${BASE_PATH}/img/boject/titan.jpg`,
     title: "巨人手稿",
     text: "艾爾文領兵對戰羅德‧雷斯變成的奇形種時，以左手繪製，留下的珍貴手稿。由當時仍為調查兵團成員的希斯特莉亞‧雷斯保存，以艾爾迪亞皇室名義捐贈。",
   },
   {
-    img: "/img/boject/armband.jpg",
+    img: `${BASE_PATH}/img/boject/armband.jpg`,
     title: "調查兵團臂章",
     text: "退役士官長里維‧阿卡曼捐贈。",
   },

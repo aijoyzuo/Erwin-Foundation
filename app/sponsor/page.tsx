@@ -1,12 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import styles from "./sponsor.module.css";
+import { BASE_PATH } from "@/lib/basePath";
 
 export const metadata: Metadata = {
   title: "sponsor",
   description: "沒想到你會來到這裡。",
   icons: {
-    icon: "/img/coin/favicon.ico",
+    icon: `${BASE_PATH}/img/coin/favicon.ico`,
   },
 };
 
@@ -41,7 +42,7 @@ export default function SponsorPage() {
           </li>
         </ul>
 
-        <img src="/img/hbdwinbig.png" title="no party in Paradis." alt="no party in Paradis." />
+        <img src={`${BASE_PATH}/img/hbdwinbig.png`} title="no party in Paradis." alt="no party in Paradis." />
         <p className={styles.pa}>(對了，網頁的製作者是佐降)</p>
         <p className={styles.pb}>Special Thanks: woffy</p>
       </div>

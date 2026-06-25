@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { BASE_PATH } from "@/lib/basePath";
 
 export const metadata: Metadata = {
   title: "海岸線手札：還原艾連‧葉卡故居｜Erwin Foundation",
@@ -23,7 +24,7 @@ export default function Artical202501Page() {
           <h1>海岸線手札：還原艾連‧葉卡故居</h1>
           <div className="meta"><span>展期：2025-10-10 ~ 2025-12-25　</span><span>地點：地下室展區　主辦：Erwin Foundation</span></div>
 
-          <img className="hero" src="/img/POSTER/POSTER2.jpg" alt="展覽主視覺" />
+          <img className="hero" src={`${BASE_PATH}/img/POSTER/POSTER2.jpg`} alt="展覽主視覺" />
 
           <p style={{ paddingBottom: 8 }}>本展 1:1 比例還原艾連‧葉卡故居，對於艾爾文‧史密斯而言夢想埋葬的所在，卻是人類自由的新生地。</p>
           <h2>緣起</h2>

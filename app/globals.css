@@ -81,7 +81,7 @@ body.sticky-footer .content {
   max-width:100%;
   padding-top:100px; /* 避免被 fixed navbar 蓋住 */
   padding-bottom:50px;
-  background-image:url("/img/paperboard2.png");
+  background-image:var(--paperboard-bg);
   background-repeat:repeat;
   background-color:#efe3cf;
 }

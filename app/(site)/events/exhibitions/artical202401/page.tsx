@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { BASE_PATH } from "@/lib/basePath";
 
 export const metadata: Metadata = {
   title: "「面向大海」：史密斯廣場公共藝術檔案展｜Erwin Foundation",
@@ -23,7 +24,7 @@ export default function Artical202401Page() {
           <h1>「面向大海」：史密斯廣場公共藝術檔案展</h1>
           <div className="meta"><span>展期：2024-10-10 ~ 2024-12-25　</span><span>地點：史密斯廣場　主辦：Erwin Foundation</span></div>
 
-          <img className="hero" src="/img/POSTER/POSTER3.jpg" alt="展覽主視覺" />
+          <img className="hero" src={`${BASE_PATH}/img/POSTER/POSTER3.jpg`} alt="展覽主視覺" />
 
           <p style={{ paddingBottom: 8 }}>本展從公共空間的政治象徵出發，透過檔案影像、修復草圖與口述歷史，呈現雕像如何在不同政權更替之間被摧毀、重寫與再詮釋。</p>
           <h2>緣起</h2>

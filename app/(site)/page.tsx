@@ -3,6 +3,7 @@ import CollectionSwiper from "@/components/CollectionSwiper";
 import CoinAnimator from "@/components/CoinAnimator";
 import LightboxImage from "@/components/LightboxImage";
 import ScrollObserverInit from "@/components/ScrollObserverInit";
+import { BASE_PATH } from "@/lib/basePath";
 
 export default function Home() {
   return (
@@ -61,14 +62,14 @@ export default function Home() {
             天與地之戰後十年，皇室在廣場中央立起艾爾文與其愛駿的雕像，面朝海的方向，象徵帕拉迪島追求知識的靈魂，以及推倒極權，崇尚自由的渴望。該廣場則命名為「史密斯廣場」。
           </p>
           <LightboxImage
-            src="/img/statue/statue2.jpg"
+            src={`${BASE_PATH}/img/statue/statue2.jpg`}
             alt="Smith Square"
             className="scroll-element"
           />
         </div>
         <div className="square-b">
           <LightboxImage
-            src="/img/statue/statue.1.jpg"
+            src={`${BASE_PATH}/img/statue/statue.1.jpg`}
             alt="Commander Erwin"
             className="scroll-element"
           />
@@ -91,7 +92,7 @@ export default function Home() {
             <br /><br />後者說法認為艾爾文與里維身為長官，卻共同使用調查兵團宿舍為有利證據，惟當時調查兵團資源與設備缺乏，多名士兵共用宿舍並非罕見之事。據悉在艾爾文逝世後，里維士官長便搬進單人房，將空間騰作議事使用。<br /><br /><br /><br />
             <i className="fa-solid fa-caret-right" />　里維士官長（前排左一）。該照片為天與地之戰前夕，於帕拉迪島境內首次搭建的相館所攝。
           </p>
-          <img src="/img/Fpvp0eDaAAAuGTs.jpg" alt="" />
+          <img src={`${BASE_PATH}/img/Fpvp0eDaAAAuGTs.jpg`} alt="" />
         </div>
       </div>
       <div className="founder">

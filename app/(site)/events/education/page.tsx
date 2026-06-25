@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { BASE_PATH } from "@/lib/basePath";
 
 export const metadata: Metadata = {
   title: "推廣教育｜Erwin Foundation",
@@ -17,7 +18,7 @@ const items = [
     meta: ["日期：2024-10-01～2024-10-31　", "地點：基金會教室　對象：親子"],
     tags: ["工作坊", "活動體驗"],
     text: "透過實際體驗、有獎徵答及三道牆闖關活動，引發幼童對於本島歷史的興趣與認識。",
-    img: "/img/POSTER/POSTER1.jpg",
+    img: `${BASE_PATH}/img/POSTER/POSTER1.jpg`,
   },
   {
     title: "2023 帕島走春：迎接新氣象",
