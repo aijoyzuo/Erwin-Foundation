@@ -349,7 +349,143 @@ body.sticky-footer .content {
 
 /*展覽li*/
 .artical-li{
-border-left: 2px solid rgb(122, 106, 42,0.6); 
-padding-left: 8px; 
+border-left: 2px solid rgb(122, 106, 42,0.6);
+padding-left: 8px;
 margin-bottom: 4px;
+}
+
+/* ===== 推廣教育 / 藝文展覽 共用樣式 ===== */
+.edu-wrap, .exh-wrap, .article-wrap {
+  max-width: 960px;
+  margin: 28px auto;
+  padding: 0 16px;
+}
+
+.edu-item {
+  background: #fffbf4;
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+}
+
+.tag {
+  display: inline-block;
+  font-size: .82rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eef;
+  margin-right: 6px;
+}
+
+.edu-item-p { padding-top: 6px; }
+
+.edu-meta, .meta {
+  color: #888;
+  font-size: 0.92rem;
+  margin-top: 8px;
+  margin-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .edu-meta, .meta {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+}
+
+.post-card {
+  background: #fffbf4;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+}
+
+.post-card h2 { margin: 0 0 8px; }
+
+.post-card p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.read-more {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  background: #7a6a2a;
+  color: #fff;
+}
+
+.read-more:hover { filter: brightness(.9); }
+
+.article-wrap article {
+  background: #fffbf4;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+}
+
+.hero {
+  width: 100%;
+  border-radius: 8px;
+  margin: 8px 0 8px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #7a6a2a;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+  color: #0b0b0b;
+}
+
+.artical-pblock { padding: 8px 0 8px 25px; }
+
+.quote-note {
+  font-style: italic;
+  display: block;
+  text-align: right;
+  color: rgba(136, 136, 136);
+}
+
+@media (max-width: 768px) {
+  .quote-note { font-size: 0.8rem; }
+}
+
+.artical-table {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.artical-table th,
+.artical-table td {
+  border: 1px solid #ffffff;
+  padding: 8px;
+  text-align: left;
+}
+
+.artical-table th {
+  background-color: rgb(122, 106, 42, 0.8);
+  color: #fff;
+  text-align: center;
+}
+
+.artical-table .tr-color {
+  background-color: rgb(214, 197, 99, 0.3);
+}
+
+@media (max-width: 600px) {
+  .hide-on-mobile { display: none; }
 }

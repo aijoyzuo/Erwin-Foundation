@@ -1,0 +1,78 @@
+.bgc {
+  background-color: #1b252f;
+  min-height: 100vh;
+}
+
+.wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 100px;
+}
+
+.wrap h1 {
+  font-family: Caption, system-ui;
+  font-weight: 600;
+  font-size: 40px;
+  color: #9bb0c6;
+}
+
+.wrap ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  list-style: none;
+}
+
+.wrap li a {
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+  color: #9bb0c6;
+  border-radius: 12px;
+}
+
+.wrap li a:hover {
+  color: #ffffff;
+  background-color: #2f3944;
+}
+
+.wrap img {
+  max-width: 100%;
+}
+
+.pa {
+  font-family: Caption, system-ui;
+  line-height: 170%;
+  color: #9bb0c6;
+}
+
+.pb {
+  font-family: "Black Ops One", system-ui;
+  font-size: 12px;
+  color: #0a4c72;
+}
+
+.breadcrumb {
+  max-width: 960px;
+  margin: 28px auto;
+  padding: 0 16px;
+  color: #9bb0c6;
+}
+
+.breadcrumb a {
+  color: #9bb0c6;
+}
+
+.breadcrumb a:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+@media (max-width: 431px) {
+  .wrap {
+    max-width: 100%;
+  }
+}

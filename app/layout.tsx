@@ -1,8 +1,4 @@
 import type { Metadata } from "next";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import BackToTop from "@/components/BackToTop";
-import StickyFooterBody from "@/components/StickyFooterBody";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -37,16 +33,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
       </head>
-      <body>
-        <StickyFooterBody>
-          <div className="wrap">
-            <Header />
-            {children}
-            <BackToTop />
-            <Footer />
-          </div>
-        </StickyFooterBody>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
