@@ -31,6 +31,7 @@ export default function LightboxImage({
         open={open}
         close={() => setOpen(false)}
         slides={[{ src, alt }]}
+        render={{ buttonPrev: () => null, buttonNext: () => null }}
       />
     </>
   );

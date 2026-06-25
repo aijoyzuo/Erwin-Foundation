@@ -1,7 +1,7 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar } from "swiper/modules";
+import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -29,10 +29,11 @@ export default function CollectionSwiper() {
   return (
     <Swiper
       className="swiper mySwiper"
-      modules={[Pagination, Navigation, Scrollbar]}
+      modules={[Pagination, Navigation, Scrollbar, Autoplay]}
       direction="horizontal"
       speed={1500}
       loop
+      autoplay={{ delay: 2500 }}
       pagination={{ el: ".swiper-pagination" }}
       navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
       scrollbar={{ el: ".swiper-scrollbar" }}

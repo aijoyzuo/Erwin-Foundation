@@ -220,7 +220,8 @@ body.sticky-footer .content {
 .about{ max-width:1000px; margin:0 auto; padding-top:40px; }
 .about h3{ padding-top:15px; padding-left:25px; }
 .about-a{ display:flex; align-items:center; gap:50px; padding:20px 0 50px 0; }
-.about img{ width:300px; height:300px; object-fit:cover; }
+.about-a #animatedElement{ flex-shrink:0; }
+.about img{ width:300px; height:300px; object-fit:cover; max-width:none; }
 
 /* ===== 生平 ===== */
 .life{ max-width:1000px; margin:0 auto; }
