@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 type SubmenuKey = "events" | "support" | "links" | null;
@@ -10,6 +11,7 @@ export default function Header() {
   const [openSubmenu, setOpenSubmenu] = useState<SubmenuKey>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -46,6 +48,14 @@ export default function Header() {
     setOpenSubmenu(null);
   };
 
+  const handleSectionClick = (id: string) => (e: React.MouseEvent) => {
+    closeMobile();
+    if (pathname !== "/") return;
+    e.preventDefault();
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    history.pushState(null, "", `#${id}`);
+  };
+
   return (
     <nav ref={navRef} className={`navbar ${isOpen ? "is-open" : ""}`}>
       <div className="nav-container">
@@ -68,11 +78,11 @@ export default function Header() {
           <i className="fa fa-bars" />
         </div>
         <ul className="nav-menu">
-          <li><Link href="/#section1">本基金會</Link></li>
-          <li><Link href="/#section2">艾爾文生平</Link></li>
-          <li><Link href="/#section3">史密斯廣場</Link></li>
-          <li><Link href="/#section4">文物典藏</Link></li>
-          <li><Link href="/#section5">團長軼聞</Link></li>
+          <li><Link href="/#section1" onClick={handleSectionClick("section1")}>本基金會</Link></li>
+          <li><Link href="/#section2" onClick={handleSectionClick("section2")}>艾爾文生平</Link></li>
+          <li><Link href="/#section3" onClick={handleSectionClick("section3")}>史密斯廣場</Link></li>
+          <li><Link href="/#section4" onClick={handleSectionClick("section4")}>文物典藏</Link></li>
+          <li><Link href="/#section5" onClick={handleSectionClick("section5")}>團長軼聞</Link></li>
           <li
             onMouseEnter={() => handleEnter("events")}
             onMouseLeave={handleLeave}
@@ -110,11 +120,11 @@ export default function Header() {
 
       {/* 手機版選單 */}
       <ul className="mobile-menu" id="mobileMenu">
-        <li className="mobile-hide"><Link href="/#section1" onClick={closeMobile}>本基金會</Link></li>
-        <li className="mobile-hide"><Link href="/#section2" onClick={closeMobile}>艾爾文生平</Link></li>
-        <li className="mobile-hide"><Link href="/#section3" onClick={closeMobile}>史密斯廣場</Link></li>
-        <li className="mobile-hide"><Link href="/#section4" onClick={closeMobile}>文物典藏</Link></li>
-        <li className="mobile-hide"><Link href="/#section5" onClick={closeMobile}>團長軼聞</Link></li>
+        <li className="mobile-hide"><Link href="/#section1" onClick={handleSectionClick("section1")}>本基金會</Link></li>
+        <li className="mobile-hide"><Link href="/#section2" onClick={handleSectionClick("section2")}>艾爾文生平</Link></li>
+        <li className="mobile-hide"><Link href="/#section3" onClick={handleSectionClick("section3")}>史密斯廣場</Link></li>
+        <li className="mobile-hide"><Link href="/#section4" onClick={handleSectionClick("section4")}>文物典藏</Link></li>
+        <li className="mobile-hide"><Link href="/#section5" onClick={handleSectionClick("section5")}>團長軼聞</Link></li>
         <li>
           <a
             href="#"
