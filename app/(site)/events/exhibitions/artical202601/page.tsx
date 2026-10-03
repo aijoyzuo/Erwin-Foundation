@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { BASE_PATH } from "@/lib/basePath";
+import ImagePopup from "@/components/ImagePopup";
 
 export const metadata: Metadata = {
   title: "2026史密斯誕辰著色徵稿活動｜Erwin Foundation",
@@ -32,33 +33,32 @@ export default function Artical202601Page() {
           <div className="artical-pblock">
             下載著色畫公版，完成後透過 Google 表單上傳投稿。
             <br />
-            <a href="https://forms.gle/Bw86zUYTH13pdSZK9" target="_blank" rel="noopener noreferrer" className="back-link">投稿表單</a>
+            <a href="https://forms.gle/Bw86zUYTH13pdSZK9" target="_blank" rel="noopener noreferrer" className="read-more" style={{ marginTop: 8 }}>投稿表單</a>
           </div>
 
           <h2>著色畫公版</h2>
-          <div className="artical-pblock">
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 16, paddingTop: 8 }}>
-              <div style={{ width: 220, textAlign: "center" }}>
-                <a href="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" target="_blank" rel="noopener noreferrer">
-                  <img src="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" alt="著色畫公版圖案" style={{ width: "100%", borderRadius: 8 }} />
-                </a>
-                <div style={{ paddingTop: 8 }}>1. 公版圖案</div>
-                <a href="https://images.plurk.com/4zF8D7UfjgA9n96TRM4OFi.png" target="_blank" rel="noopener noreferrer">下載 PNG</a>
+          <div className="artical-pblock" style={{ textAlign: "center" }}>
+            <ImagePopup
+              src="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg"
+              alt="著色畫公版圖案"
+              thumbStyle={{ width: "100%", maxWidth: 500, borderRadius: 8 }}
+            />
+            <div style={{ display: "flex", justifyContent: "center", gap: 12, paddingTop: 12 }}>
+              <a href="https://images.plurk.com/4zF8D7UfjgA9n96TRM4OFi.png" download className="read-more">下載 PNG</a>
+              <a href="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" download className="read-more">下載 JPG</a>
+            </div>
 
-                <a href="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" target="_blank" rel="noopener noreferrer">下載 JPG</a>
-              </div>
-              <div style={{ width: 220, textAlign: "center" }}>
-                <a href="https://images.plurk.com/7oYhqtSdyzeGmvVwUeSUr8.jpg" target="_blank" rel="noopener noreferrer">
-                  <img src="https://images.plurk.com/7oYhqtSdyzeGmvVwUeSUr8.jpg" alt="範例圖一" style={{ width: "100%", borderRadius: 8 }} />
-                </a>
-                <div style={{ paddingTop: 8 }}>2. 範例圖一</div>
-              </div>
-              <div style={{ width: 220, textAlign: "center" }}>
-                <a href="https://images.plurk.com/4h4t4icXR71uWpJAxXaYbK.jpg" target="_blank" rel="noopener noreferrer">
-                  <img src="https://images.plurk.com/4h4t4icXR71uWpJAxXaYbK.jpg" alt="範例圖二" style={{ width: "100%", borderRadius: 8 }} />
-                </a>
-                <div style={{ paddingTop: 8 }}>3. 範例圖二</div>
-              </div>
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 16, paddingTop: 24 }}>
+              <ImagePopup
+                src="https://images.plurk.com/7oYhqtSdyzeGmvVwUeSUr8.jpg"
+                alt="範例圖一"
+                thumbStyle={{ width: 260, maxWidth: "100%", borderRadius: 8 }}
+              />
+              <ImagePopup
+                src="https://images.plurk.com/4h4t4icXR71uWpJAxXaYbK.jpg"
+                alt="範例圖二"
+                thumbStyle={{ width: 260, maxWidth: "100%", borderRadius: 8 }}
+              />
             </div>
           </div>
 
