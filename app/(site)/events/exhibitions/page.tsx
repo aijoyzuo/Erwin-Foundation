@@ -8,6 +8,13 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "artical202504",
+    title: "吋尺的天與地：舉起槍也舉起我們的孩子",
+    meta: "展期：現正展出中　地點：二樓展覽室",
+    img: `${BASE_PATH}/img/POSTER/POSTER2025-2.jpg`,
+    text: "反戰專題月微縮模型特展，以士兵公仔重現戰場場景，叩問舉起槍的手，也曾是孩子的手。",
+  },
+  {
     slug: "artical202501",
     title: "海岸線手札：還原艾連‧葉卡故居",
     meta: "展期：2025-10-10 ~ 2025-12-25　地點：地下室展區",
