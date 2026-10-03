@@ -58,7 +58,7 @@ export default function Artical202601Page() {
                 thumbStyle={{ width: 260, maxWidth: "100%", borderRadius: 8 }}
               />
               <ImagePopup
-                src="https://images.plurk.com/4h4t4icXR71uWpJAxXaYbK.jpg"
+                src="https://images.plurk.com/kW5LlKrvI6mCi0AtKgDml.jpg"
                 alt="範例圖二"
                 thumbStyle={{ width: 260, maxWidth: "100%", borderRadius: 8 }}
               />
