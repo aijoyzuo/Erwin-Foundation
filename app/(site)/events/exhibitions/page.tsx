@@ -8,6 +8,13 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "artical202601",
+    title: "2026史密斯誕辰著色徵稿活動",
+    meta: "徵稿期間：即日起至 2026-10-10（六）　地點：線上徵稿",
+    img: `${BASE_PATH}/img/POSTER/POSTER26-1.png`,
+    text: "本基金會為凝聚新生代對在地歷史的共感，特於史密斯團長生日月舉辦著色畫徵稿，敬邀大小朋友共襄盛舉。",
+  },
+  {
     slug: "artical202504",
     title: "吋尺的天與地：舉起槍也舉起我們的孩子",
     meta: "展期：2025-10-01 ~ 2025-10-30　地點：二樓展覽室",
