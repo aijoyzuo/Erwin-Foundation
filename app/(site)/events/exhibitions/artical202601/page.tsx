@@ -44,8 +44,8 @@ export default function Artical202601Page() {
               style={{ width: "100%", maxWidth: 500, aspectRatio: "1 / 1", objectFit: "cover", borderRadius: 8, margin: "0 auto" }}
             />
             <div style={{ display: "flex", justifyContent: "center", gap: 12, paddingTop: 12 }}>
-              <a href="https://images.plurk.com/4zF8D7UfjgA9n96TRM4OFi.png" target="_blank" rel="noopener noreferrer" className="read-more">另存 PNG</a>
-              <a href="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" target="_blank" rel="noopener noreferrer" className="read-more">另存 JPG</a>
+              <a href="https://images.plurk.com/4zF8D7UfjgA9n96TRM4OFi.png" target="_blank" rel="noopener noreferrer" className="read-more">PNG</a>
+              <a href="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" target="_blank" rel="noopener noreferrer" className="read-more">JPG</a>
             </div>
           </div>
 
