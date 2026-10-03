@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { BASE_PATH } from "@/lib/basePath";
 import ImagePopup from "@/components/ImagePopup";
+import DownloadButton from "@/components/DownloadButton";
 
 export const metadata: Metadata = {
   title: "2026史密斯誕辰著色徵稿活動｜Erwin Foundation",
@@ -38,17 +39,18 @@ export default function Artical202601Page() {
 
           <h2>著色畫公版</h2>
           <div className="artical-pblock" style={{ textAlign: "center" }}>
-            <ImagePopup
+            <img
               src="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg"
               alt="著色畫公版圖案"
-              thumbStyle={{ width: "100%", maxWidth: 500, borderRadius: 8 }}
+              style={{ width: "100%", maxWidth: 500, aspectRatio: "1 / 1", objectFit: "cover", borderRadius: 8 }}
             />
             <div style={{ display: "flex", justifyContent: "center", gap: 12, paddingTop: 12 }}>
-              <a href="https://images.plurk.com/4zF8D7UfjgA9n96TRM4OFi.png" download className="read-more">下載 PNG</a>
-              <a href="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" download className="read-more">下載 JPG</a>
+              <DownloadButton href="https://images.plurk.com/4zF8D7UfjgA9n96TRM4OFi.png" filename="著色畫公版.png" className="read-more">下載 PNG</DownloadButton>
+              <DownloadButton href="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" filename="著色畫公版.jpg" className="read-more">下載 JPG</DownloadButton>
             </div>
 
-            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 16, paddingTop: 24 }}>
+            <p style={{ paddingTop: 24 }}>投稿示範圖</p>
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 16, paddingTop: 8 }}>
               <ImagePopup
                 src="https://images.plurk.com/7oYhqtSdyzeGmvVwUeSUr8.jpg"
                 alt="範例圖一"
