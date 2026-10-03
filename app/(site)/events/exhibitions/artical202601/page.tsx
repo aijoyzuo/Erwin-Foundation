@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { BASE_PATH } from "@/lib/basePath";
 import ImagePopup from "@/components/ImagePopup";
-import DownloadButton from "@/components/DownloadButton";
 
 export const metadata: Metadata = {
   title: "2026史密斯誕辰著色徵稿活動｜Erwin Foundation",
@@ -26,7 +25,7 @@ export default function Artical202601Page() {
           <h1>2026史密斯誕辰著色徵稿活動</h1>
           <div className="meta"><span>徵稿期間：即日起至 2026-10-10（六）23:59　</span><span>地點：線上徵稿　主辦：Erwin Foundation</span></div>
 
-          <img className="hero" src={`${BASE_PATH}/img/POSTER/POSTER26-1.png`} style={{ height: 300, objectFit: "cover" }} alt="活動主視覺" />
+          <img className="hero" src={`${BASE_PATH}/img/POSTER/POSTER26-1.png`} alt="活動主視覺" />
 
           <p style={{ paddingBottom: 8 }}>本基金會為凝聚新生代對在地歷史的共感，特於史密斯團長生日月舉辦著色畫徵稿，敬邀大小朋友共襄盛舉。</p>
 
@@ -42,15 +41,17 @@ export default function Artical202601Page() {
             <img
               src="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg"
               alt="著色畫公版圖案"
-              style={{ width: "100%", maxWidth: 500, aspectRatio: "1 / 1", objectFit: "cover", borderRadius: 8 }}
+              style={{ width: "100%", maxWidth: 500, aspectRatio: "1 / 1", objectFit: "cover", borderRadius: 8, margin: "0 auto" }}
             />
             <div style={{ display: "flex", justifyContent: "center", gap: 12, paddingTop: 12 }}>
-              <DownloadButton href="https://images.plurk.com/4zF8D7UfjgA9n96TRM4OFi.png" filename="著色畫公版.png" className="read-more">下載 PNG</DownloadButton>
-              <DownloadButton href="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" filename="著色畫公版.jpg" className="read-more">下載 JPG</DownloadButton>
+              <a href="https://images.plurk.com/4zF8D7UfjgA9n96TRM4OFi.png" target="_blank" rel="noopener noreferrer" className="read-more">另存 PNG</a>
+              <a href="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" target="_blank" rel="noopener noreferrer" className="read-more">另存 JPG</a>
             </div>
+          </div>
 
-            <p style={{ paddingTop: 24 }}>投稿示範圖</p>
-            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 16, paddingTop: 8 }}>
+          <h2>投稿示範圖</h2>
+          <div className="artical-pblock" style={{ textAlign: "center" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 16 }}>
               <ImagePopup
                 src="https://images.plurk.com/7oYhqtSdyzeGmvVwUeSUr8.jpg"
                 alt="範例圖一"
