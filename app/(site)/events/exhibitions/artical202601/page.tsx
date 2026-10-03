@@ -32,21 +32,32 @@ export default function Artical202601Page() {
           <div className="artical-pblock">
             下載著色畫公版，完成後透過 Google 表單上傳投稿。
             <br />
-            <Link href="#" className="back-link">投稿表單（連結待補）</Link>
+            <a href="https://forms.gle/Bw86zUYTH13pdSZK9" target="_blank" rel="noopener noreferrer" className="back-link">投稿表單</a>
           </div>
 
           <h2>著色畫公版</h2>
           <div className="artical-pblock">
             <div style={{ display: "flex", flexWrap: "wrap", gap: 16, paddingTop: 8 }}>
-              <div style={{ width: 220, border: "1px dashed #a89a6a", borderRadius: 8, padding: 12, textAlign: "center" }}>
-                <div style={{ paddingBottom: 8 }}>1. 公版圖案（待補）</div>
-                <Link href="#">下載 PNG</Link>　<Link href="#">下載 JPG</Link>
+              <div style={{ width: 220, textAlign: "center" }}>
+                <a href="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" target="_blank" rel="noopener noreferrer">
+                  <img src="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" alt="著色畫公版圖案" style={{ width: "100%", borderRadius: 8 }} />
+                </a>
+                <div style={{ paddingTop: 8 }}>1. 公版圖案</div>
+                <a href="https://images.plurk.com/4zF8D7UfjgA9n96TRM4OFi.png" target="_blank" rel="noopener noreferrer">下載 PNG</a>
+
+                <a href="https://images.plurk.com/5tzu5A81KUmPQGtzpzj7TU.jpg" target="_blank" rel="noopener noreferrer">下載 JPG</a>
               </div>
-              <div style={{ width: 220, border: "1px dashed #a89a6a", borderRadius: 8, padding: 12, textAlign: "center" }}>
-                2. 範例圖一（待補）
+              <div style={{ width: 220, textAlign: "center" }}>
+                <a href="https://images.plurk.com/7oYhqtSdyzeGmvVwUeSUr8.jpg" target="_blank" rel="noopener noreferrer">
+                  <img src="https://images.plurk.com/7oYhqtSdyzeGmvVwUeSUr8.jpg" alt="範例圖一" style={{ width: "100%", borderRadius: 8 }} />
+                </a>
+                <div style={{ paddingTop: 8 }}>2. 範例圖一</div>
               </div>
-              <div style={{ width: 220, border: "1px dashed #a89a6a", borderRadius: 8, padding: 12, textAlign: "center" }}>
-                3. 範例圖二（待補）
+              <div style={{ width: 220, textAlign: "center" }}>
+                <a href="https://images.plurk.com/4h4t4icXR71uWpJAxXaYbK.jpg" target="_blank" rel="noopener noreferrer">
+                  <img src="https://images.plurk.com/4h4t4icXR71uWpJAxXaYbK.jpg" alt="範例圖二" style={{ width: "100%", borderRadius: 8 }} />
+                </a>
+                <div style={{ paddingTop: 8 }}>3. 範例圖二</div>
               </div>
             </div>
           </div>
