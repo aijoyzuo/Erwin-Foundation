@@ -490,3 +490,162 @@ margin-bottom: 4px;
 @media (max-width: 600px) {
   .hide-on-mobile { display: none; }
 }
+/* ===== 推廣教育：著色畫比賽展覽區 ===== */
+.cg-gallery { padding: 16px 0 8px; }
+.cg-stage { position: relative; }
+.cg-swiper { padding: 12px 0 8px; }
+
+.cg-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: zoom-in;
+  transition: transform .6s ease, opacity .6s ease;
+  transform: scale(.78);
+  opacity: .7;
+}
+.cg-swiper .swiper-slide-active .cg-item { transform: scale(1); opacity: 1; }
+
+/* 古典畫框：圓弧線腳外框（45 度斜接）+ 古銅斑駁質感 + 內圈捲紋雕花 */
+.cg-frame {
+  --band: 18px;
+  --carve: 8px;
+  position: relative;
+  width: 100%;
+  padding: var(--band);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .4), 0 2px 4px rgba(0, 0, 0, .3);
+}
+.cg-side {
+  position: absolute;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .16 0 0 0 0 .08 .9 0 0 0 -.3'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .28 0 0 0 0 .22 0 0 0 0 .12 1.2 0 0 0 -.45'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23n)'/%3E%3C/svg%3E"), var(--side-gradient);
+  pointer-events: none;
+}
+.cg-side-t, .cg-side-b { left: 0; right: 0; height: var(--band); }
+.cg-side-l, .cg-side-r { top: 0; bottom: 0; width: var(--band); }
+.cg-side-t {
+  top: 0;
+  --side-gradient: linear-gradient(to bottom, #2a2112 0%, #5e4f31 10%, #a8956a 35%, #857250 58%, #574830 85%, #2a2112 100%);
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--band)) 100%, var(--band) 100%);
+}
+.cg-side-l {
+  left: 0;
+  --side-gradient: linear-gradient(to right, #2a2112 0%, #5a4b2e 10%, #9c8a60 35%, #7c6a49 58%, #51432c 85%, #2a2112 100%);
+  clip-path: polygon(0 0, 100% var(--band), 100% calc(100% - var(--band)), 0 100%);
+}
+.cg-side-r {
+  right: 0;
+  --side-gradient: linear-gradient(to left, #1f180c 0%, #4b3f27 10%, #8a7a55 35%, #6c5c3e 58%, #463a25 85%, #1f180c 100%);
+  clip-path: polygon(100% 0, 100% 100%, 0 calc(100% - var(--band)), 0 var(--band));
+}
+.cg-side-b {
+  bottom: 0;
+  --side-gradient: linear-gradient(to top, #1f180c 0%, #463a24 10%, #82724e 35%, #665638 58%, #423622 85%, #1f180c 100%);
+  clip-path: polygon(0 100%, 100% 100%, calc(100% - var(--band)) 0, var(--band) 0);
+}
+.cg-carve {
+  position: relative;
+  border: var(--carve) solid #4a3d22;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E %3Crect width='30' height='30' fill='%234a3d22'/%3E %3Cg fill='none' stroke='%232b2210' stroke-width='1.8' stroke-linecap='round' transform='translate(.5 .7)'%3E%3Cpath d='M10 5C11.5 1 13.5 1 15 5S18.5 9 20 5'/%3E%3Cpath d='M10 25C11.5 21 13.5 21 15 25S18.5 29 20 25'/%3E%3Cpath d='M5 10C1 11.5 1 13.5 5 15S9 18.5 5 20'/%3E%3Cpath d='M25 10C21 11.5 21 13.5 25 15S29 18.5 25 20'/%3E%3C/g%3E %3Cg fill='none' stroke='%23cdbb8c' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M10 5C11.5 1 13.5 1 15 5S18.5 9 20 5'/%3E%3Cpath d='M10 25C11.5 21 13.5 21 15 25S18.5 29 20 25'/%3E%3Cpath d='M5 10C1 11.5 1 13.5 5 15S9 18.5 5 20'/%3E%3Cpath d='M25 10C21 11.5 21 13.5 25 15S29 18.5 25 20'/%3E%3C/g%3E %3Cg stroke='%23a8956a' stroke-width='.8'%3E%3Cpath d='M0 .5H30M0 29.5H30M.5 0V30M29.5 0V30'/%3E%3C/g%3E %3Cg stroke='%232b2210' stroke-width='.8'%3E%3Cpath d='M0 9.5H30M0 20.5H30M9.5 0V30M20.5 0V30'/%3E%3C/g%3E %3Cg fill='%23cdbb8c' stroke='%232b2210' stroke-width='.6'%3E%3Ccircle cx='5' cy='5' r='2.3'/%3E%3Ccircle cx='25' cy='5' r='2.3'/%3E%3Ccircle cx='5' cy='25' r='2.3'/%3E%3Ccircle cx='25' cy='25' r='2.3'/%3E%3C/g%3E %3C/svg%3E") 10 round;
+}
+.cg-mat {
+  background: #f4ecd9;
+  padding: 14px;
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, .3), inset -1px -1px 2px rgba(255, 255, 255, .6);
+}
+.cg-carve::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 2px 3px 6px rgba(0, 0, 0, .45);
+  pointer-events: none;
+}
+.cg-lightbox .cg-frame { --band: 26px; --carve: 10px; }
+.cg-mat img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  height: auto;
+  border-radius: 0;
+  user-select: none;
+}
+
+/* 銅製展示名牌 */
+.cg-nameplate {
+  margin-top: 16px;
+  min-width: 60%;
+  padding: 6px 16px;
+  text-align: center;
+  font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  color: #f1e6c8;
+  background: linear-gradient(180deg, #8a7a55 0%, #6c5c3e 45%, #574830 55%, #7c6a49 100%);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px #2a2112, inset 0 0 0 3px rgba(205, 187, 140, .45), 0 3px 6px rgba(0, 0, 0, .3);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .6);
+}
+.cg-nameplate-author { display: block; font-size: 14px; font-weight: 600; letter-spacing: .06em; }
+
+.cg-arrow {
+  position: absolute;
+  top: 45%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid #d6c563;
+  background: rgba(11, 11, 11, .75);
+  color: #d6c563;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.cg-arrow:hover { background: #d6c563; color: #0b0b0b; }
+.cg-arrow-prev { left: 0; }
+.cg-arrow-next { right: 0; }
+
+/* 放大檢視 */
+.cg-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, .8);
+}
+.cg-lightbox-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(600px, 88vw, 72vh);
+}
+.cg-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #d6c563;
+  background: #0b0b0b;
+  color: #d6c563;
+  font-size: 22px;
+  line-height: 30px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .4);
+}
+.cg-close:hover { background: #d6c563; color: #0b0b0b; }
+
+@media (max-width: 768px) {
+  .cg-frame { --band: 13px; --carve: 6px; }
+  .cg-lightbox .cg-frame { --band: 18px; --carve: 8px; }
+  .cg-mat { padding: 9px; }
+  .cg-arrow { width: 28px; height: 28px; }
+  .cg-close { top: -12px; right: -8px; }
+}
