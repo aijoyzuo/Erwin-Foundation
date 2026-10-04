@@ -9,9 +9,8 @@ import { BASE_PATH } from "@/lib/basePath";
 
 const slides = [
   { img: `${BASE_PATH}/img/POSTER/POSTER26-1.png`, href: "/events/exhibitions/artical202601" },
-  { img: `${BASE_PATH}/img/POSTER/POSTER2025-3.jpg` },
-  { img: `${BASE_PATH}/img/POSTER/POSTER2025-2.jpg` },
-  { img: `${BASE_PATH}/img/POSTER/POSTER2025-1.jpg` },
+  { img: `${BASE_PATH}/img/POSTER/POSTER26-2.png` },
+  { img: `${BASE_PATH}/img/POSTER/POSTER26-3.png` },
 ];
 
 export default function PosterSwiper() {
