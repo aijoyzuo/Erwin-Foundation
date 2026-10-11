@@ -8,7 +8,7 @@ import "swiper/css/effect-fade";
 import { BASE_PATH } from "@/lib/basePath";
 
 const slides = [
-  { img: `${BASE_PATH}/img/POSTER/POSTER26-1.png`, href: "/events/exhibitions/artical202601" },
+  { img: `${BASE_PATH}/img/POSTER/POSTER26-1.png`, href: "/events/education#coloring-gallery" },
   { img: `${BASE_PATH}/img/POSTER/POSTER26-2.png` },
   { img: `${BASE_PATH}/img/POSTER/POSTER26-3.png` },
 ];

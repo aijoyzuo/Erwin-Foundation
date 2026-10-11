@@ -67,10 +67,10 @@ export default function ColoringGallery({ data }: { data: ColoringGalleryData })
           loop
           centeredSlides
           grabCursor
-          speed={800}
+          speed={600}
           slidesPerView={1.4}
           breakpoints={{ 768: { slidesPerView: 3 } }}
-          autoplay={{ delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          autoplay={{ delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true }}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           onClick={(swiper) => {
             const index = swiper.clickedSlide?.dataset.workIndex;

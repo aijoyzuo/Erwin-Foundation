@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { BASE_PATH } from "@/lib/basePath";
 import ColoringGallery from "@/components/ColoringGallery";
+import ColoringCallNotice from "@/components/ColoringCallNotice";
 import { coloringGallery } from "@/data/coloringGallery";
 
 export const metadata: Metadata = {
@@ -51,7 +52,7 @@ export default function EducationPage() {
           <Link href="/">首頁</Link> › 推廣教育
         </nav>
         <h1 style={{ paddingBottom: 8 }}>推廣教育｜歷年活動</h1>
-        <section className="edu-item">
+        <section className="edu-item" id="coloring-gallery">
           <h3>{coloringGallery.title}</h3>
           <div className="edu-meta">{coloringGallery.meta.map((m) => <span key={m}>{m}</span>)}</div>
           <div>
@@ -60,6 +61,7 @@ export default function EducationPage() {
             ))}
           </div>
           <p className="edu-item-p">{coloringGallery.text}</p>
+          <ColoringCallNotice />
           <ColoringGallery data={coloringGallery} />
         </section>
         <section>
