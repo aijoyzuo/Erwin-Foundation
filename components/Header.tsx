@@ -113,6 +113,7 @@ export default function Header() {
               <li><a href="https://woffymilk.github.io/2021Hange/index.html" target="_blank" rel="noreferrer"><i className="fa-solid fa-glasses" /> 韓吉‧佐耶紀念網</a></li>
               <li><a href="https://www.instagram.com/aot_paradis_happy/" target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram" /> 新帕島康樂隊</a></li>
               <li><a href="https://www.youtube.com/watch?v=zR96chkYc08&t=1s" target="_blank" rel="noreferrer"><i className="fa-solid fa-horse-head" /> 馬的圖鑑成果展</a></li>
+              <li><Link href="/games/2048"><i className="fa-solid fa-cake-candles" /> 阿爾敏生日紀念</Link></li>
             </ul>
           </li>
         </ul>
@@ -179,6 +180,7 @@ export default function Header() {
             <li><a href="https://woffymilk.github.io/2021Hange/index.html" target="_blank" rel="noreferrer" onClick={closeMobile}><i className="fa-solid fa-glasses indentation" /> 韓吉‧佐耶紀念網</a></li>
             <li><a href="https://www.instagram.com/aot_paradis_happy/" target="_blank" rel="noreferrer" onClick={closeMobile}><i className="fa-brands fa-instagram indentation" /> 新帕島康樂隊</a></li>
             <li><a href="https://www.youtube.com/watch?v=zR96chkYc08&t=1s" target="_blank" rel="noreferrer" onClick={closeMobile}><i className="fa-solid fa-horse-head indentation" /> 馬的圖鑑成果展</a></li>
+            <li><Link href="/games/2048" onClick={closeMobile}><i className="fa-solid fa-cake-candles indentation" /> 阿爾敏生日紀念</Link></li>
           </ul>
         </li>
       </ul>
