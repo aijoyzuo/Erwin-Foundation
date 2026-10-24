@@ -876,3 +876,52 @@ margin-bottom: 4px;
   .g2048 { --g-gap: 6px; }
   .g2048-badge { font-size: .62rem; padding: 2px 4px; }
 }
+
+/* 全站新紀錄慶祝動畫 */
+.g2048-record {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  background: rgba(20, 16, 8, .55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  animation: g2048-splash-in .3s ease-out;
+}
+.g2048-confetti {
+  position: absolute;
+  top: -20px;
+  border-radius: 2px;
+  animation-name: g2048-confetti-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: 2;
+  animation-fill-mode: both;
+}
+@keyframes g2048-confetti-fall {
+  0% { transform: translateY(0) rotate(0); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(calc(var(--spin) * 720deg)); opacity: .8; }
+}
+.g2048-record-banner {
+  position: relative;
+  background: linear-gradient(160deg, #2a2112, #5e4f31);
+  border: 3px solid #d6c563;
+  border-radius: 14px;
+  padding: 22px 34px 18px;
+  text-align: center;
+  color: #fffbf4;
+  box-shadow: 0 0 0 6px rgba(214, 197, 99, .25), 0 10px 40px rgba(0, 0, 0, .5);
+  animation: g2048-record-pop .6s cubic-bezier(.2, 1.6, .4, 1) both, g2048-record-glow 1.6s ease-in-out .6s infinite alternate;
+}
+.g2048-record-banner .fa-trophy { font-size: 2.6rem; color: #d4a017; text-shadow: 0 0 12px rgba(242, 227, 160, .8); }
+.g2048-record-title { margin-top: 6px; font-size: 1.6rem; font-weight: 800; color: #d6c563; letter-spacing: .08em; }
+.g2048-record-name { margin-top: 4px; font-size: 1.15rem; font-weight: 700; }
+.g2048-record-score { font-size: 2rem; font-weight: 800; color: #f2e3a0; line-height: 1.2; }
+.g2048-record-sub { margin-top: 6px; font-size: .9rem; color: #e8dcc0; }
+@keyframes g2048-record-pop { 0% { transform: scale(.3); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes g2048-record-glow {
+  from { box-shadow: 0 0 0 6px rgba(214, 197, 99, .25), 0 10px 40px rgba(0, 0, 0, .5); }
+  to { box-shadow: 0 0 0 12px rgba(214, 197, 99, .4), 0 0 40px rgba(242, 227, 160, .6); }
+}

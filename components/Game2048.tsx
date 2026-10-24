@@ -117,6 +117,54 @@ function TileFace({ value }: { value: number }) {
   );
 }
 
+const CONFETTI_COLORS = ["#d6c563", "#d4a017", "#f2e3a0", "#7a6a2a", "#4f8fd6", "#e57373", "#fffbf4"];
+
+// 刷新全站最高分時的慶祝動畫：彩帶飄落 + 新紀錄橫幅，約 6 秒或點擊後關閉
+function RecordCelebration({ record, onClose }: { record: { name: string; score: number }; onClose: () => void }) {
+  const [pieces] = useState(() =>
+    Array.from({ length: 70 }, (_, i) => ({
+      left: Math.random() * 100,
+      delay: Math.random() * 1.2,
+      duration: 2.4 + Math.random() * 1.8,
+      color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+      size: 6 + Math.random() * 6,
+      spin: Math.random() < 0.5 ? -1 : 1,
+    })),
+  );
+
+  useEffect(() => {
+    const t = setTimeout(onClose, 6000);
+    return () => clearTimeout(t);
+  }, [onClose]);
+
+  return (
+    <div className="g2048-record" onClick={onClose}>
+      {pieces.map((p, i) => (
+        <span
+          key={i}
+          className="g2048-confetti"
+          style={{
+            left: `${p.left}%`,
+            width: p.size,
+            height: p.size * 0.45,
+            background: p.color,
+            animationDelay: `${p.delay}s`,
+            animationDuration: `${p.duration}s`,
+            "--spin": p.spin,
+          } as React.CSSProperties}
+        />
+      ))}
+      <div className="g2048-record-banner">
+        <i className="fa-solid fa-trophy" />
+        <p className="g2048-record-title">全站新紀錄！</p>
+        <p className="g2048-record-name">{record.name}</p>
+        <p className="g2048-record-score">{record.score} 分</p>
+        <p className="g2048-record-sub">第15任團長也為你喝采！</p>
+      </div>
+    </div>
+  );
+}
+
 export default function Game2048() {
   const [tiles, setTiles] = useState<Tile[]>([]);
   const [score, setScore] = useState(0);
@@ -130,6 +178,8 @@ export default function Game2048() {
   const [boardError, setBoardError] = useState(false);
   const [splash, setSplash] = useState<string | null>(null);
   const [splashLeaving, setSplashLeaving] = useState(false);
+  const [record, setRecord] = useState<{ name: string; score: number } | null>(null);
+  const closeRecord = useCallback(() => setRecord(null), []);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const boardRef = useRef<HTMLDivElement>(null);
 
@@ -255,14 +305,20 @@ export default function Game2048() {
     const trimmed = name.trim();
     if (trimmed.length < 1 || trimmed.length > 12 || submitState === "sending") return;
     setSubmitState("sending");
+    const finalScore = Math.min(score, 500000);
     try {
+      // 送出前取最新排行榜，用來判斷是否刷新全站最高分
+      const before = await fetchTop5().catch(() => null);
       await submitScore({
         name: trimmed,
-        score: Math.min(score, 500000),
+        score: finalScore,
         max_tile: Math.min(maxTile, MAX_TILE_ALLOWED),
       });
       setSubmitState("done");
       loadTop5();
+      if (before && finalScore > 0 && finalScore > (before[0]?.score ?? 0)) {
+        setRecord({ name: trimmed, score: finalScore });
+      }
     } catch {
       setSubmitState("error");
     }
@@ -272,6 +328,7 @@ export default function Game2048() {
 
   return (
     <div className="g2048">
+      {record && <RecordCelebration record={record} onClose={closeRecord} />}
       {splash && (
         <div className={`g2048-splash${splashLeaving ? " is-leaving" : ""}`} onClick={dismissSplash}>
           <figure>
