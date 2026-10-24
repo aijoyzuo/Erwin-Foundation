@@ -131,6 +131,24 @@ export default function Game2048() {
   const [splash, setSplash] = useState<string | null>(null);
   const [splashLeaving, setSplashLeaving] = useState(false);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const boardRef = useRef<HTMLDivElement>(null);
+
+  // 手機在棋盤上滑動時不要捲動頁面；本頁也關閉下拉重新整理
+  useEffect(() => {
+    const board = boardRef.current;
+    const block = (e: TouchEvent) => {
+      if ((e.target as HTMLElement)?.closest("input, button")) return;
+      e.preventDefault();
+    };
+    board?.addEventListener("touchmove", block, { passive: false });
+    const html = document.documentElement;
+    const prevOverscroll = html.style.overscrollBehaviorY;
+    html.style.overscrollBehaviorY = "none";
+    return () => {
+      board?.removeEventListener("touchmove", block);
+      html.style.overscrollBehaviorY = prevOverscroll;
+    };
+  }, []);
 
   const maxTile = tiles.reduce((m, t) => Math.max(m, t.value), 0);
 
@@ -268,7 +286,7 @@ export default function Game2048() {
         <button type="button" className="g2048-btn" onClick={restart}>重新開始</button>
       </div>
 
-      <div className="g2048-board" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      <div className="g2048-board" ref={boardRef} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         {Array.from({ length: SIZE * SIZE }, (_, i) => (
           <div className="g2048-cell" key={i} style={{ gridRow: Math.floor(i / SIZE) + 1, gridColumn: (i % SIZE) + 1 }} />
         ))}

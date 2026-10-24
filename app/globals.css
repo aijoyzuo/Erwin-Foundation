@@ -731,6 +731,8 @@ margin-bottom: 4px;
   border-radius: 10px;
   touch-action: none;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 .g2048-cell {
   background: rgba(255, 251, 244, .35);
@@ -758,7 +760,7 @@ margin-bottom: 4px;
   align-items: center;
   justify-content: center;
 }
-.g2048-tile-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.g2048-tile-inner img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; -webkit-user-drag: none; }
 .g2048-tile.is-new .g2048-tile-inner { animation: g2048-appear .18s ease-out; }
 .g2048-tile.is-merged { z-index: 2; }
 .g2048-tile.is-merged .g2048-tile-inner { animation: g2048-pop .2s ease-out; }
