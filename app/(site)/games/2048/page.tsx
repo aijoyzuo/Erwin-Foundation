@@ -15,7 +15,6 @@ export default function Armin2048Page() {
         </nav>
         <h1 style={{ paddingBottom: 8 }}>阿爾敏生日紀念｜2048</h1>
         <section className="edu-item">
-          <p className="edu-item-p">合併相同的方塊，從 2 一路合成到 2048，收集所有阿爾敏的插圖吧！</p>
           <Game2048 />
         </section>
       </div>

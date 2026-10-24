@@ -128,6 +128,8 @@ export default function Game2048() {
   const [submitState, setSubmitState] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [top5, setTop5] = useState<ScoreRow[] | null>(null);
   const [boardError, setBoardError] = useState(false);
+  const [splash, setSplash] = useState<string | null>(null);
+  const [splashLeaving, setSplashLeaving] = useState(false);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   const maxTile = tiles.reduce((m, t) => Math.max(m, t.value), 0);
@@ -162,6 +164,22 @@ export default function Game2048() {
       if (src) new Image().src = src;
     }
   }, [restart, loadTop5]);
+
+  // 進入頁面時的蓋板：隨機一張插圖，約兩秒後淡出（重新開始不會再出現）
+  useEffect(() => {
+    setSplash(tileImg(2 ** (Math.floor(Math.random() * 11) + 1)));
+    const fade = setTimeout(() => setSplashLeaving(true), 2000);
+    const hide = setTimeout(() => setSplash(null), 2400);
+    return () => {
+      clearTimeout(fade);
+      clearTimeout(hide);
+    };
+  }, []);
+
+  const dismissSplash = () => {
+    setSplashLeaving(true);
+    setTimeout(() => setSplash(null), 400);
+  };
 
   const handleMove = useCallback(
     (dir: Dir) => {
@@ -236,6 +254,14 @@ export default function Game2048() {
 
   return (
     <div className="g2048">
+      {splash && (
+        <div className={`g2048-splash${splashLeaving ? " is-leaving" : ""}`} onClick={dismissSplash}>
+          <figure>
+            <img src={splash} alt="阿爾敏插圖" />
+            <figcaption>為第15任團長獻上祝福！</figcaption>
+          </figure>
+        </div>
+      )}
       <div className="g2048-scores">
         <div className="g2048-score"><span>分數</span><strong>{score}</strong></div>
         <div className="g2048-score"><span>最高分</span><strong>{best}</strong></div>
@@ -302,9 +328,10 @@ export default function Game2048() {
         ) : (
           <ol>
             {top5.map((row, i) => (
-              <li key={i}>
+              <li key={i} className={`g2048-rank-${i + 1}`}>
+                <span className="g2048-rank-no">{i + 1}</span>
                 <span className="g2048-rank-name">{row.name}</span>
-                <span>{row.score} 分</span>
+                <span className="g2048-rank-score">{row.score} 分</span>
                 <span className="g2048-rank-tile">最大 {row.max_tile}</span>
               </li>
             ))}
