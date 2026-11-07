@@ -8,7 +8,7 @@ type Tile = { id: number; value: number; r: number; c: number; merged?: boolean;
 type Dir = "up" | "down" | "left" | "right";
 type ScoreRow = { name: string; score: number; max_tile: number };
 type BoardRow = ScoreRow & { created_at: string };
-type Boards = { recent: ScoreRow[]; history: ScoreRow[]; recentPeriod: number | null };
+type Boards = { recent: ScoreRow[]; history: ScoreRow[] };
 type BoardTab = "recent" | "history";
 type Celebration = { kind: BoardTab; name: string; score: number };
 
@@ -117,14 +117,6 @@ function topByName(rows: ScoreRow[]): ScoreRow[] {
 
 const periodOf = (time: number) => Math.floor((time - PERIOD_START) / PERIOD_MS);
 
-const formatDate = (time: number) =>
-  new Date(time).toLocaleDateString("zh-TW", { month: "numeric", day: "numeric", timeZone: "Asia/Taipei" });
-
-function periodLabel(period: number): string {
-  const start = PERIOD_START + period * PERIOD_MS;
-  return `${formatDate(start)}–${formatDate(start + PERIOD_MS - 1)}`;
-}
-
 // 近期榜單顯示最新一筆紀錄所屬的那一期：沒人玩時留著舊榜，換期後第一筆紀錄才開新榜
 async function fetchBoards(): Promise<Boards> {
   const [latest, history] = await Promise.all([
@@ -133,7 +125,7 @@ async function fetchBoards(): Promise<Boards> {
   ]);
   const recentPeriod = latest[0] ? periodOf(Date.parse(latest[0].created_at)) : null;
   const recent = latest.filter((row) => periodOf(Date.parse(row.created_at)) === recentPeriod);
-  return { recent: topByName(recent), history: topByName(history), recentPeriod };
+  return { recent: topByName(recent), history: topByName(history) };
 }
 
 async function submitScore(row: ScoreRow) {
@@ -377,14 +369,6 @@ export default function Game2048() {
 
   const showOverlay = over || (won && !keepPlaying);
   const shownRows = boards?.[boardTab] ?? null;
-  const recentPeriod = boards?.recentPeriod ?? null;
-  const recentNote =
-    recentPeriod === null
-      ? null
-      : recentPeriod === periodOf(Date.now())
-        ? `本期 ${periodLabel(recentPeriod)}`
-        : `目前顯示最近一期 ${periodLabel(recentPeriod)}，下一位送出分數的玩家將開啟新一期榜單。`;
-  const rankNote = boardTab === "recent" ? recentNote : "全站歷來的前五名，同一暱稱只列最高分。";
 
   // 繼續挑戰後，遊戲結束時可以再送出更高的最終分數
   const continueGame = () => {
@@ -467,7 +451,7 @@ export default function Game2048() {
           <button type="button" aria-pressed={boardTab === "recent"} onClick={() => setBoardTab("recent")}>近期榜單</button>
           <button type="button" aria-pressed={boardTab === "history"} onClick={() => setBoardTab("history")}>歷史榜單</button>
         </div>
-        {rankNote && <p className="g2048-rank-note">{rankNote}</p>}
+        {boardTab === "history" && <p className="g2048-rank-note">全站歷來的前五名，同一暱稱只列最高分。</p>}
         {boardError ? (
           <p>排行榜暫時無法載入。</p>
         ) : shownRows === null ? (
