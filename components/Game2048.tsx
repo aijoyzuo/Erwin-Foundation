@@ -10,7 +10,7 @@ type ScoreRow = { name: string; score: number; max_tile: number };
 type BoardRow = ScoreRow & { created_at: string };
 type Boards = { recent: ScoreRow[]; history: ScoreRow[] };
 type BoardTab = "recent" | "history";
-type Celebration = { kind: BoardTab; name: string; score: number };
+type Celebration = { kind: BoardTab | "record"; name: string; score: number };
 
 const SIZE = 4;
 const BEST_KEY = "erwin2048-best";
@@ -154,9 +154,15 @@ function TileFace({ value }: { value: number }) {
   );
 }
 
-const CONFETTI_COLORS = ["#d6c563", "#d4a017", "#f2e3a0", "#7a6a2a", "#4f8fd6", "#e57373", "#fffbf4"];
+const CELEBRATION_TITLES: Record<Celebration["kind"], string> = {
+  record: "全站新紀錄！",
+  history: "登上歷史榜單！",
+  recent: "登上近期榜單！",
+};
 
-// 刷新全站最高分或登上近期榜單時的慶祝動畫：彩帶飄落 + 橫幅，約 6 秒或點擊後關閉
+const CONFETTI_COLORS =["#d6c563", "#d4a017", "#f2e3a0", "#7a6a2a", "#4f8fd6", "#e57373", "#fffbf4"];
+
+// 刷新全站最高分或登上任一榜單時的慶祝動畫：彩帶飄落 + 橫幅，約 6 秒或點擊後關閉
 function RecordCelebration({ record, onClose }: { record: Celebration; onClose: () => void }) {
   const [pieces] = useState(() =>
     Array.from({ length: 70 }, (_, i) => ({
@@ -192,8 +198,8 @@ function RecordCelebration({ record, onClose }: { record: Celebration; onClose: 
         />
       ))}
       <div className="g2048-record-banner">
-        <i className={`fa-solid ${record.kind === "history" ? "fa-trophy" : "fa-medal"}`} />
-        <p className="g2048-record-title">{record.kind === "history" ? "全站新紀錄！" : "登上近期榜單！"}</p>
+        <i className={`fa-solid ${record.kind === "record" ? "fa-trophy" : "fa-medal"}`} />
+        <p className="g2048-record-title">{CELEBRATION_TITLES[record.kind]}</p>
         <p className="g2048-record-name">{record.name}</p>
         <p className="g2048-record-score">{record.score} 分</p>
         <p className="g2048-record-sub">第15任團長也為你喝采！</p>
@@ -345,7 +351,7 @@ export default function Game2048() {
     setSubmitState("sending");
     const finalScore = Math.min(score, 500000);
     try {
-      // 送出前取最新排行榜，用來判斷是否刷新全站最高分或新登上近期榜單
+      // 送出前取最新排行榜，用來判斷是否刷新全站最高分或新登上榜單
       const before = await fetchBoards().catch(() => null);
       await submitScore({
         name: trimmed,
@@ -357,10 +363,15 @@ export default function Game2048() {
       if (after) setBoards(after);
       setBoardError(!after);
       const isMine = (row: ScoreRow) => row.name === trimmed && row.score === finalScore;
-      if (before && finalScore > 0 && finalScore > (before.history[0]?.score ?? 0)) {
-        setRecord({ kind: "history", name: trimmed, score: finalScore });
-      } else if (before && after?.recent.some(isMine) && !before.recent.some(isMine)) {
-        setRecord({ kind: "recent", name: trimmed, score: finalScore });
+      const newlyOn = (tab: BoardTab) => after?.[tab].some(isMine) && !before?.[tab].some(isMine);
+      if (finalScore > 0) {
+        if (before && finalScore > (before.history[0]?.score ?? 0)) {
+          setRecord({ kind: "record", name: trimmed, score: finalScore });
+        } else if (newlyOn("history")) {
+          setRecord({ kind: "history", name: trimmed, score: finalScore });
+        } else if (newlyOn("recent")) {
+          setRecord({ kind: "recent", name: trimmed, score: finalScore });
+        }
       }
     } catch {
       setSubmitState("error");
