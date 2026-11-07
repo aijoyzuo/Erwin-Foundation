@@ -451,7 +451,7 @@ export default function Game2048() {
           <button type="button" aria-pressed={boardTab === "recent"} onClick={() => setBoardTab("recent")}>近期榜單</button>
           <button type="button" aria-pressed={boardTab === "history"} onClick={() => setBoardTab("history")}>歷史榜單</button>
         </div>
-        {boardTab === "history" && <p className="g2048-rank-note">全站歷來的前五名，同一暱稱只列最高分。</p>}
+        {boardTab === "history" && <p className="g2048-rank-note">全站歷來的前五名</p>}
         {boardError ? (
           <p>排行榜暫時無法載入。</p>
         ) : shownRows === null ? (
