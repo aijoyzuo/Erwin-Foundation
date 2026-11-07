@@ -380,10 +380,11 @@ export default function Game2048() {
   const recentPeriod = boards?.recentPeriod ?? null;
   const recentNote =
     recentPeriod === null
-      ? `每 ${PERIOD_DAYS} 天刷新一次，同一暱稱只列最高分。`
+      ? null
       : recentPeriod === periodOf(Date.now())
-        ? `本期 ${periodLabel(recentPeriod)}，每 ${PERIOD_DAYS} 天刷新一次，同一暱稱只列最高分。`
+        ? `本期 ${periodLabel(recentPeriod)}`
         : `目前顯示最近一期 ${periodLabel(recentPeriod)}，下一位送出分數的玩家將開啟新一期榜單。`;
+  const rankNote = boardTab === "recent" ? recentNote : "全站歷來的前五名，同一暱稱只列最高分。";
 
   // 繼續挑戰後，遊戲結束時可以再送出更高的最終分數
   const continueGame = () => {
@@ -466,15 +467,13 @@ export default function Game2048() {
           <button type="button" aria-pressed={boardTab === "recent"} onClick={() => setBoardTab("recent")}>近期榜單</button>
           <button type="button" aria-pressed={boardTab === "history"} onClick={() => setBoardTab("history")}>歷史榜單</button>
         </div>
-        <p className="g2048-rank-note">
-          {boardTab === "recent" ? recentNote : "全站歷來的前五名，同一暱稱只列最高分。"}
-        </p>
+        {rankNote && <p className="g2048-rank-note">{rankNote}</p>}
         {boardError ? (
           <p>排行榜暫時無法載入。</p>
         ) : shownRows === null ? (
           <p>載入中…</p>
         ) : shownRows.length === 0 ? (
-          <p>目前還沒有紀錄，成為第一位吧！</p>
+          <p className="g2048-rank-empty">目前還沒有紀錄，成為第一位吧！</p>
         ) : (
           <ol>
             {shownRows.map((row, i) => (
