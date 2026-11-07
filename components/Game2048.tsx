@@ -7,10 +7,25 @@ import { SUPABASE_URL, SUPABASE_KEY, TABLE } from "@/lib/game2048Config";
 type Tile = { id: number; value: number; r: number; c: number; merged?: boolean; isNew?: boolean };
 type Dir = "up" | "down" | "left" | "right";
 type ScoreRow = { name: string; score: number; max_tile: number };
+type BoardRow = ScoreRow & { created_at: string };
+type Boards = { recent: ScoreRow[]; history: ScoreRow[]; recentPeriod: number | null };
+type BoardTab = "recent" | "history";
+type Celebration = { kind: BoardTab; name: string; score: number };
 
 const SIZE = 4;
 const BEST_KEY = "erwin2048-best";
 const MAX_TILE_ALLOWED = 8192;
+const TOP_N = 5;
+// 近期榜單每 3 天一期，從這個時間開始分期（台灣時間午夜換期）
+const PERIOD_START = Date.parse("2026-11-07T00:00:00+08:00");
+const PERIOD_DAYS = 3;
+const PERIOD_MS = PERIOD_DAYS * 24 * 60 * 60 * 1000;
+// 一期的紀錄通常遠少於此數，超過時只統計較新的紀錄
+const RECENT_FETCH = 500;
+// 同名合併前先多取一些，避免前幾名都是同一人時湊不滿五名
+const HISTORY_FETCH = 50;
+// 雙榜上線時保留的五筆只列入歷史榜單，近期榜單從零開始
+const HISTORY_ONLY_IDS = [144, 149, 118, 141, 162];
 
 // 2 → 01.jpg、4 → 02.jpg … 2048 → 11.jpg
 const tileImg = (value: number) => {
@@ -82,13 +97,43 @@ function canMove(tiles: Tile[]): boolean {
   return false;
 }
 
-async function fetchTop5(): Promise<ScoreRow[]> {
-  const res = await fetch(
-    `${SUPABASE_URL}/rest/v1/${TABLE}?select=name,score,max_tile&order=score.desc&limit=5`,
-    { headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` } },
-  );
+async function fetchRows(query: string): Promise<BoardRow[]> {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}?select=name,score,max_tile,created_at&${query}`, {
+    headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
+  });
   if (!res.ok) throw new Error(await res.text());
   return res.json();
+}
+
+// 同一暱稱只留最高分，再取前幾名
+function topByName(rows: ScoreRow[]): ScoreRow[] {
+  const best = new Map<string, ScoreRow>();
+  for (const row of rows) {
+    const current = best.get(row.name);
+    if (!current || row.score > current.score) best.set(row.name, row);
+  }
+  return [...best.values()].sort((a, b) => b.score - a.score).slice(0, TOP_N);
+}
+
+const periodOf = (time: number) => Math.floor((time - PERIOD_START) / PERIOD_MS);
+
+const formatDate = (time: number) =>
+  new Date(time).toLocaleDateString("zh-TW", { month: "numeric", day: "numeric", timeZone: "Asia/Taipei" });
+
+function periodLabel(period: number): string {
+  const start = PERIOD_START + period * PERIOD_MS;
+  return `${formatDate(start)}–${formatDate(start + PERIOD_MS - 1)}`;
+}
+
+// 近期榜單顯示最新一筆紀錄所屬的那一期：沒人玩時留著舊榜，換期後第一筆紀錄才開新榜
+async function fetchBoards(): Promise<Boards> {
+  const [latest, history] = await Promise.all([
+    fetchRows(`id=not.in.(${HISTORY_ONLY_IDS.join(",")})&order=id.desc&limit=${RECENT_FETCH}`),
+    fetchRows(`order=score.desc&limit=${HISTORY_FETCH}`),
+  ]);
+  const recentPeriod = latest[0] ? periodOf(Date.parse(latest[0].created_at)) : null;
+  const recent = latest.filter((row) => periodOf(Date.parse(row.created_at)) === recentPeriod);
+  return { recent: topByName(recent), history: topByName(history), recentPeriod };
 }
 
 async function submitScore(row: ScoreRow) {
@@ -119,8 +164,8 @@ function TileFace({ value }: { value: number }) {
 
 const CONFETTI_COLORS = ["#d6c563", "#d4a017", "#f2e3a0", "#7a6a2a", "#4f8fd6", "#e57373", "#fffbf4"];
 
-// 刷新全站最高分時的慶祝動畫：彩帶飄落 + 新紀錄橫幅，約 6 秒或點擊後關閉
-function RecordCelebration({ record, onClose }: { record: { name: string; score: number }; onClose: () => void }) {
+// 刷新全站最高分或登上近期榜單時的慶祝動畫：彩帶飄落 + 橫幅，約 6 秒或點擊後關閉
+function RecordCelebration({ record, onClose }: { record: Celebration; onClose: () => void }) {
   const [pieces] = useState(() =>
     Array.from({ length: 70 }, (_, i) => ({
       left: Math.random() * 100,
@@ -155,8 +200,8 @@ function RecordCelebration({ record, onClose }: { record: { name: string; score:
         />
       ))}
       <div className="g2048-record-banner">
-        <i className="fa-solid fa-trophy" />
-        <p className="g2048-record-title">全站新紀錄！</p>
+        <i className={`fa-solid ${record.kind === "history" ? "fa-trophy" : "fa-medal"}`} />
+        <p className="g2048-record-title">{record.kind === "history" ? "全站新紀錄！" : "登上近期榜單！"}</p>
         <p className="g2048-record-name">{record.name}</p>
         <p className="g2048-record-score">{record.score} 分</p>
         <p className="g2048-record-sub">第15任團長也為你喝采！</p>
@@ -174,11 +219,12 @@ export default function Game2048() {
   const [keepPlaying, setKeepPlaying] = useState(false);
   const [name, setName] = useState("");
   const [submitState, setSubmitState] = useState<"idle" | "sending" | "done" | "error">("idle");
-  const [top5, setTop5] = useState<ScoreRow[] | null>(null);
+  const [boards, setBoards] = useState<Boards | null>(null);
+  const [boardTab, setBoardTab] = useState<BoardTab>("recent");
   const [boardError, setBoardError] = useState(false);
   const [splash, setSplash] = useState<string | null>(null);
   const [splashLeaving, setSplashLeaving] = useState(false);
-  const [record, setRecord] = useState<{ name: string; score: number } | null>(null);
+  const [record, setRecord] = useState<Celebration | null>(null);
   const closeRecord = useCallback(() => setRecord(null), []);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const boardRef = useRef<HTMLDivElement>(null);
@@ -202,10 +248,10 @@ export default function Game2048() {
 
   const maxTile = tiles.reduce((m, t) => Math.max(m, t.value), 0);
 
-  const loadTop5 = useCallback(() => {
-    fetchTop5()
+  const loadBoards = useCallback(() => {
+    fetchBoards()
       .then((rows) => {
-        setTop5(rows);
+        setBoards(rows);
         setBoardError(false);
       })
       .catch(() => setBoardError(true));
@@ -225,13 +271,13 @@ export default function Game2048() {
     try {
       setBest(Number(localStorage.getItem(BEST_KEY)) || 0);
     } catch {}
-    loadTop5();
+    loadBoards();
     // 預載方塊圖
     for (let i = 1; i <= 11; i++) {
       const src = tileImg(2 ** i);
       if (src) new Image().src = src;
     }
-  }, [restart, loadTop5]);
+  }, [restart, loadBoards]);
 
   // 進入頁面時的蓋板：隨機一張插圖，約兩秒後淡出（重新開始不會再出現）
   useEffect(() => {
@@ -307,17 +353,22 @@ export default function Game2048() {
     setSubmitState("sending");
     const finalScore = Math.min(score, 500000);
     try {
-      // 送出前取最新排行榜，用來判斷是否刷新全站最高分
-      const before = await fetchTop5().catch(() => null);
+      // 送出前取最新排行榜，用來判斷是否刷新全站最高分或新登上近期榜單
+      const before = await fetchBoards().catch(() => null);
       await submitScore({
         name: trimmed,
         score: finalScore,
         max_tile: Math.min(maxTile, MAX_TILE_ALLOWED),
       });
       setSubmitState("done");
-      loadTop5();
-      if (before && finalScore > 0 && finalScore > (before[0]?.score ?? 0)) {
-        setRecord({ name: trimmed, score: finalScore });
+      const after = await fetchBoards().catch(() => null);
+      if (after) setBoards(after);
+      setBoardError(!after);
+      const isMine = (row: ScoreRow) => row.name === trimmed && row.score === finalScore;
+      if (before && finalScore > 0 && finalScore > (before.history[0]?.score ?? 0)) {
+        setRecord({ kind: "history", name: trimmed, score: finalScore });
+      } else if (before && after?.recent.some(isMine) && !before.recent.some(isMine)) {
+        setRecord({ kind: "recent", name: trimmed, score: finalScore });
       }
     } catch {
       setSubmitState("error");
@@ -325,6 +376,20 @@ export default function Game2048() {
   };
 
   const showOverlay = over || (won && !keepPlaying);
+  const shownRows = boards?.[boardTab] ?? null;
+  const recentPeriod = boards?.recentPeriod ?? null;
+  const recentNote =
+    recentPeriod === null
+      ? `每 ${PERIOD_DAYS} 天刷新一次，同一暱稱只列最高分。`
+      : recentPeriod === periodOf(Date.now())
+        ? `本期 ${periodLabel(recentPeriod)}，每 ${PERIOD_DAYS} 天刷新一次，同一暱稱只列最高分。`
+        : `目前顯示最近一期 ${periodLabel(recentPeriod)}，下一位送出分數的玩家將開啟新一期榜單。`;
+
+  // 繼續挑戰後，遊戲結束時可以再送出更高的最終分數
+  const continueGame = () => {
+    setKeepPlaying(true);
+    setSubmitState("idle");
+  };
 
   return (
     <div className="g2048">
@@ -363,6 +428,12 @@ export default function Game2048() {
           <div className="g2048-overlay">
             <p className="g2048-overlay-title">{over ? "遊戲結束" : "達成 2048！生日快樂，阿爾敏！"}</p>
             <p>本局分數：{score}</p>
+            {!over && (
+              <>
+                <p>遊戲還沒結束，可以繼續挑戰更高分！</p>
+                <button type="button" className="g2048-btn g2048-btn-primary" onClick={continueGame}>繼續挑戰</button>
+              </>
+            )}
             {submitState === "done" ? (
               <p>已送出分數，感謝參與！</p>
             ) : (
@@ -381,9 +452,6 @@ export default function Game2048() {
             )}
             {submitState === "error" && <p className="g2048-error">送出失敗，請稍後再試。</p>}
             <div className="g2048-overlay-actions">
-              {!over && (
-                <button type="button" className="g2048-btn" onClick={() => setKeepPlaying(true)}>繼續挑戰</button>
-              )}
               <button type="button" className="g2048-btn" onClick={restart}>再玩一次</button>
             </div>
           </div>
@@ -394,15 +462,22 @@ export default function Game2048() {
 
       <section className="g2048-rank">
         <h3>排行榜前五名</h3>
+        <div className="g2048-rank-tabs" role="group" aria-label="切換排行榜">
+          <button type="button" aria-pressed={boardTab === "recent"} onClick={() => setBoardTab("recent")}>近期榜單</button>
+          <button type="button" aria-pressed={boardTab === "history"} onClick={() => setBoardTab("history")}>歷史榜單</button>
+        </div>
+        <p className="g2048-rank-note">
+          {boardTab === "recent" ? recentNote : "全站歷來的前五名，同一暱稱只列最高分。"}
+        </p>
         {boardError ? (
           <p>排行榜暫時無法載入。</p>
-        ) : top5 === null ? (
+        ) : shownRows === null ? (
           <p>載入中…</p>
-        ) : top5.length === 0 ? (
+        ) : shownRows.length === 0 ? (
           <p>目前還沒有紀錄，成為第一位吧！</p>
         ) : (
           <ol>
-            {top5.map((row, i) => (
+            {shownRows.map((row, i) => (
               <li key={i} className={`g2048-rank-${i + 1}`}>
                 <span className="g2048-rank-no">{i + 1}</span>
                 <span className="g2048-rank-name">{row.name}</span>

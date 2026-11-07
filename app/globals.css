@@ -718,6 +718,8 @@ margin-bottom: 4px;
 }
 .g2048-btn:hover { background: #5e4f31; }
 .g2048-btn:disabled { opacity: .5; cursor: default; }
+.g2048-btn-primary { background: #d4a017; color: #2a2112; font-weight: 700; padding-inline: 22px; }
+.g2048-btn-primary:hover { background: #d6c563; }
 
 .g2048-board {
   position: relative;
@@ -810,6 +812,19 @@ margin-bottom: 4px;
 
 .g2048-rank { margin-top: 18px; }
 .g2048-rank h3 { margin-bottom: 8px; }
+.g2048-rank-tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+.g2048-rank-tabs button {
+  flex: 1;
+  padding: 7px 10px;
+  border: 1px solid #857250;
+  border-radius: 6px;
+  background: #fffbf4;
+  color: #5e4f31;
+  font-weight: 600;
+  cursor: pointer;
+}
+.g2048-rank-tabs button[aria-pressed="true"] { background: #857250; color: #fff; }
+.g2048-rank-note { color: #888; font-size: .85rem; margin-bottom: 8px; }
 .g2048-rank ol { display: flex; flex-direction: column; gap: 6px; }
 .g2048-rank li {
   display: flex;
